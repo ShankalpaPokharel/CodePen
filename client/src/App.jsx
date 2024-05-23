@@ -6,7 +6,7 @@ function App() {
 
   return (
     <>
-      <h1 className='text-5xl font-lato'>Hello</h1>
+      <h1 className='text-5xl text-primary-dark  font-monos  '>Hello</h1>
       <h1 className='text-5xl font-opensans'>Hello</h1>
        
     </>

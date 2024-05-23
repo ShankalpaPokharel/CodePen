@@ -41,9 +41,30 @@ export default {
       fontFamily:{
         'lato':["Lato", ...defaultTheme.fontFamily.sans],
         "opensans": ["Open Sans",...defaultTheme.fontFamily.sans]
-      }
+      },
+
     },
   },
   plugins: [],
 }
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Things to do: 
+color setup
+install react router dom
+make componet normal component and common componet
