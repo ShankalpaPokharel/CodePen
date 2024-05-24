@@ -50,9 +50,7 @@ export default {
 ```
 
 
-
-
-
+npm install react-syntax-highlighter prismjs
 
 
 

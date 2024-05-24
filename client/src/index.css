@@ -12,6 +12,19 @@
 
 @layer components{
   .container{
-    @apply sm:px-2 max-w-[1200px]
+    @apply sm:px-8 max-w-[1200px] mx-auto
+  }
+  .blinking-cursor {
+    /* Your custom styles for the blinking cursor */
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    from, to {
+      background-color: transparent;
+    }
+    50% {
+      background-color: #ffffff; /* Cursor color, adjust as needed */
+    }
   }
 }

@@ -10,7 +10,7 @@ import { RxCross2 } from "react-icons/rx";
 
 export default function HeaderBar() {
   const [searchText, setSearchText] = useState("");
-  const [navOpen, setNavOpen] = useState("true");
+  const [navOpen, setNavOpen] = useState(false);
 
   return (
     <>
@@ -18,7 +18,7 @@ export default function HeaderBar() {
         <div className="flex items-center">
           <div className="mr-2 flex h-full items-center space-x-2 text-xl text-white md:hidden">
             <FiCodepen className="inline-block text-2xl " />
-            <div className="flex h-full -rotate-90 items-center  rounded-md bg-[#5A5F73] px-2 py-1">
+            <div className="flex h-full -rotate-90 items-center  rounded-md bg-[#5A5F73] px-2 py-1" onClick={e=>setNavOpen(!navOpen)}>
               <RiMenuFold4Line className="inline-block" />
             </div>
           </div>
@@ -52,9 +52,10 @@ export default function HeaderBar() {
         </div>
       </div>
 
-      <div className="absolute left-0 top-[74px] w-full max-w-[234px] shadow-2xl md:hidden">
+      {navOpen? <div className="absolute left-0 top-[74px] w-full max-w-[234px] shadow-2xl md:hidden z-10">
         <Header />
-      </div>
+      </div>:null}
+      
     </>
   );
 }

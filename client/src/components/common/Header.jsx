@@ -44,7 +44,7 @@ export default function Header({ className }) {
       </div>
       <div className="mt-4 px-5 py-3 text-lg hover:bg-[#09090B]">
         <span>CodePen</span>{" "}
-        <span className="bg-yellow-400 text-xs font-bold text-black">PRO</span>
+        <span className="bg-yellow-400 text-xs font-bold text-black p-1">PRO</span>
       </div>
     </div>
   );
