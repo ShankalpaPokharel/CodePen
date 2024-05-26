@@ -4,7 +4,7 @@ import Button from "./Button";
 export default function Header({ className }) {
   return (
     <div
-      className={`bg-[#1E1F26] p-5 font-medium text-primary   md:sticky md:h-screen md:p-0 ${className} `}
+      className={`bg-[#1E1F26] p-5 font-medium text-primary h-full  md:sticky md:p-0 ${className} `}
     >
       <div className="overflow-hidden ">
         <div className="hidden h-[74px] items-center px-5 md:flex">

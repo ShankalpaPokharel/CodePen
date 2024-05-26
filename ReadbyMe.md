@@ -53,6 +53,10 @@ export default {
 npm install react-syntax-highlighter prismjs
 
 
+we can't implement z-index in static change it in realtive
+
+apply overflow in parent div
+
 
 
 

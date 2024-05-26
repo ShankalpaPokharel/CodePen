@@ -12,15 +12,15 @@ function LandingPage() {
 
     return (
         
-        <div>
-            <div className="flex">
+        <div className="overflow-clip">
+            <div className="flex min-h-screen">
                 {navOpen ? (
                     <div
                         onMouseEnter={() => setIsHovered(true)}
                         onMouseLeave={() => setIsHovered(false)}
                         className="relative"
                     >
-                        <Header className="w-[180px] hidden md:block " />
+                        <Header className="w-[180px] md:min-h-screen hidden md:block " />
                         {isHovered ? (
                             <div
                                 onClick={(e) => setNavOpen(false)}
@@ -42,6 +42,7 @@ function LandingPage() {
                 <div className="w-full"> 
                     <HeaderBar />
                     <LandingPageContent/>
+                    
                 </div>
             
             </div>
