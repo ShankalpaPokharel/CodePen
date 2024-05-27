@@ -3,8 +3,9 @@ import React from "react";
 import CodeBlock from "./CodeBlock";
 import Button from "./common/Button";
 
-import { FaHeart,FaEye } from "react-icons/fa";
+import { FaHeart, FaEye } from "react-icons/fa";
 import { FaMessage } from "react-icons/fa6";
+import ImageSlider from "./ImageSlider";
 
 export default function LandingPageContent() {
   const htmlCode = `<div class="rect"></div>`;
@@ -205,9 +206,9 @@ export default function LandingPageContent() {
 
       {/* inspirational deisgn  */}
       <div>
-        <section className=" pt-12 px-8 ">
+        <section className=" px-8 pt-12 ">
           <div className="grid-cols-auto-fill-minmax container grid items-start gap-12">
-            <div className=" flex flex-col min-h-full  w-full ">
+            <div className=" flex min-h-full w-full  flex-col ">
               <h2 className="mb-[10px] text-2xl font-normal text-primary">
                 Find inspiration from 1.8 million+ front-end designers and
                 developers.
@@ -218,187 +219,260 @@ export default function LandingPageContent() {
               </p>
             </div>
 
-            <article className="group grid hover:bg-[#1e1f26] relative p-2 rounded-xl  ">
-             
-                  <div className=" opacity-[0.99] relative rounded-md overflow-hidden grid items-stretch">
-                      <div className=" h-full rounded-md pt-[56.25%] bg-[#444857] bg-cover relative"></div>
-                      <img src="https://shots.codepen.io/username/pen/KKEgQeG-1280.jpg?version=1704988946" className="absolute top-0 left-0 w-full h-full object-cover" alt=" SVG Filter — Cross Blur" loading="lazy"></img>
-                  </div>
-                  <div className="bg-[#1e1f26] p-3 rounded-xl">
-                    <header className="flex">
-                      <a href="#" className="relative mr-3">
-                      <img src="https://assets.codepen.io/1138011/internal/avatars/users/default.png?fit=crop&amp;format=auto&amp;height=80&amp;version=1517401093&amp;width=80" alt="Profile image for Andrii Rodzyk" className=" overflow-hidden rounded" width="40" height="40"/>
-                      </a>
+            <article className="group relative grid rounded-xl p-2 hover:bg-[#1e1f26]  ">
+              <div className=" relative grid items-stretch overflow-hidden rounded-md opacity-[0.99]">
+                <div className=" relative h-full rounded-md bg-[#444857] bg-cover pt-[56.25%]"></div>
+                <img
+                  src="https://shots.codepen.io/username/pen/KKEgQeG-1280.jpg?version=1704988946"
+                  className="absolute left-0 top-0 h-full w-full object-cover"
+                  alt=" SVG Filter — Cross Blur"
+                  loading="lazy"
+                ></img>
+              </div>
+              <div className="rounded-xl bg-[#1e1f26] p-3">
+                <header className="flex">
+                  <a href="#" className="relative mr-3">
+                    <img
+                      src="https://assets.codepen.io/1138011/internal/avatars/users/default.png?fit=crop&amp;format=auto&amp;height=80&amp;version=1517401093&amp;width=80"
+                      alt="Profile image for Andrii Rodzyk"
+                      className=" overflow-hidden rounded"
+                      width="40"
+                      height="40"
+                    />
+                  </a>
 
-                      <div className="w-[95%] overflow-hidden mr-1">
-                        <h2 className="font-bold mb-1 text-primary text-base">SVG Filter-Cross Blur</h2>
-                        <address className=" text-sm">
-                          <p className=" text-primary-dark">Andrii Rodzyk</p>
-                        </address>
-                      </div>
-                    </header>
-                    <footer className="mt-2 group-hover:visible invisible flex items-center text-xs text-primary">
-                      <button className="mr-1 rounded pointer inline-flex items-center text-center justify-center px-2 py-1 w-fit bg-[#5a5f73]">
-                      <FaHeart className="mr-[2px]"/>
-                      <span>19</span>
-                      </button>
-                      <button className="mr-1 rounded pointer inline-flex items-center text-center justify-center px-2 py-1 w-fit bg-[#5a5f73]">
-                      <FaMessage className="mr-[2px]"/>
-                      <span>0</span>
-                      </button>
-                      <button className="mr-1 rounded pointer inline-flex items-center text-center justify-center px-2 py-1 w-fit bg-[#5a5f73]">
-                      <FaEye className="mr-[2px]"/>
-                      <span>19</span>
-                      </button>
-                    </footer>
+                  <div className="mr-1 w-[95%] overflow-hidden">
+                    <h2 className="mb-1 text-base font-bold text-primary">
+                      SVG Filter-Cross Blur
+                    </h2>
+                    <address className=" text-sm">
+                      <p className=" text-primary-dark">Andrii Rodzyk</p>
+                    </address>
                   </div>
+                </header>
+                <footer className="invisible mt-2 flex items-center text-xs text-primary group-hover:visible">
+                  <button className="pointer mr-1 inline-flex w-fit items-center justify-center rounded bg-[#5a5f73] px-2 py-1 text-center">
+                    <FaHeart className="mr-[2px]" />
+                    <span>19</span>
+                  </button>
+                  <button className="pointer mr-1 inline-flex w-fit items-center justify-center rounded bg-[#5a5f73] px-2 py-1 text-center">
+                    <FaMessage className="mr-[2px]" />
+                    <span>0</span>
+                  </button>
+                  <button className="pointer mr-1 inline-flex w-fit items-center justify-center rounded bg-[#5a5f73] px-2 py-1 text-center">
+                    <FaEye className="mr-[2px]" />
+                    <span>19</span>
+                  </button>
+                </footer>
+              </div>
             </article>
-            <article className="group grid hover:bg-[#1e1f26] relative p-2 rounded-xl  ">
-             
-                  <div className=" opacity-[0.99] relative rounded-md overflow-hidden grid items-stretch">
-                      <div className=" h-full rounded-md pt-[56.25%] bg-[#444857] bg-cover relative"></div>
-                      <img src="https://shots.codepen.io/username/pen/LYoRWLe-320.jpg?version=1716644617" className="absolute top-0 left-0 w-full h-full object-cover" alt=" SVG Filter — Cross Blur" loading="lazy"></img>
-                  </div>
-                  <div className="bg-[#1e1f26] p-3 rounded-xl">
-                    <header className="flex">
-                      <a href="#" className="relative mr-3">
-                      <img src="https://assets.codepen.io/1138011/internal/avatars/users/default.png?fit=crop&amp;format=auto&amp;height=80&amp;version=1517401093&amp;width=80" alt="Profile image for Andrii Rodzyk" className=" overflow-hidden rounded" width="40" height="40"/>
-                      </a>
+            <article className="group relative grid rounded-xl p-2 hover:bg-[#1e1f26]  ">
+              <div className=" relative grid items-stretch overflow-hidden rounded-md opacity-[0.99]">
+                <div className=" relative h-full rounded-md bg-[#444857] bg-cover pt-[56.25%]"></div>
+                <img
+                  src="https://shots.codepen.io/username/pen/LYoRWLe-320.jpg?version=1716644617"
+                  className="absolute left-0 top-0 h-full w-full object-cover"
+                  alt=" SVG Filter — Cross Blur"
+                  loading="lazy"
+                ></img>
+              </div>
+              <div className="rounded-xl bg-[#1e1f26] p-3">
+                <header className="flex">
+                  <a href="#" className="relative mr-3">
+                    <img
+                      src="https://assets.codepen.io/1138011/internal/avatars/users/default.png?fit=crop&amp;format=auto&amp;height=80&amp;version=1517401093&amp;width=80"
+                      alt="Profile image for Andrii Rodzyk"
+                      className=" overflow-hidden rounded"
+                      width="40"
+                      height="40"
+                    />
+                  </a>
 
-                      <div className="w-[95%] overflow-hidden mr-1">
-                        <h2 className="font-bold mb-1 text-primary text-base">SVG Filter-Cross Blur</h2>
-                        <address className=" text-sm">
-                          <p className=" text-primary-dark">Andrii Rodzyk</p>
-                        </address>
-                      </div>
-                    </header>
-                    <footer className="mt-2 group-hover:visible invisible flex items-center text-xs text-primary">
-                      <button className="mr-1 rounded pointer inline-flex items-center text-center justify-center px-2 py-1 w-fit bg-[#5a5f73]">
-                      <FaHeart className="mr-[2px]"/>
-                      <span>19</span>
-                      </button>
-                      <button className="mr-1 rounded pointer inline-flex items-center text-center justify-center px-2 py-1 w-fit bg-[#5a5f73]">
-                      <FaMessage className="mr-[2px]"/>
-                      <span>0</span>
-                      </button>
-                      <button className="mr-1 rounded pointer inline-flex items-center text-center justify-center px-2 py-1 w-fit bg-[#5a5f73]">
-                      <FaEye className="mr-[2px]"/>
-                      <span>19</span>
-                      </button>
-                    </footer>
+                  <div className="mr-1 w-[95%] overflow-hidden">
+                    <h2 className="mb-1 text-base font-bold text-primary">
+                      SVG Filter-Cross Blur
+                    </h2>
+                    <address className=" text-sm">
+                      <p className=" text-primary-dark">Andrii Rodzyk</p>
+                    </address>
                   </div>
+                </header>
+                <footer className="invisible mt-2 flex items-center text-xs text-primary group-hover:visible">
+                  <button className="pointer mr-1 inline-flex w-fit items-center justify-center rounded bg-[#5a5f73] px-2 py-1 text-center">
+                    <FaHeart className="mr-[2px]" />
+                    <span>19</span>
+                  </button>
+                  <button className="pointer mr-1 inline-flex w-fit items-center justify-center rounded bg-[#5a5f73] px-2 py-1 text-center">
+                    <FaMessage className="mr-[2px]" />
+                    <span>0</span>
+                  </button>
+                  <button className="pointer mr-1 inline-flex w-fit items-center justify-center rounded bg-[#5a5f73] px-2 py-1 text-center">
+                    <FaEye className="mr-[2px]" />
+                    <span>19</span>
+                  </button>
+                </footer>
+              </div>
             </article>
-            <article className="group grid hover:bg-[#1e1f26] relative p-2 rounded-xl  ">
-             
-                  <div className=" opacity-[0.99] relative rounded-md overflow-hidden grid items-stretch">
-                      <div className=" h-full rounded-md pt-[56.25%] bg-[#444857] bg-cover relative"></div>
-                      <img src="https://shots.codepen.io/username/pen/KKEgQeG-1280.jpg?version=1704988946" className="absolute top-0 left-0 w-full h-full object-cover" alt=" SVG Filter — Cross Blur" loading="lazy"></img>
-                  </div>
-                  <div className="bg-[#1e1f26] p-3 rounded-xl">
-                    <header className="flex">
-                      <a href="#" className="relative mr-3">
-                      <img src="https://assets.codepen.io/1138011/internal/avatars/users/default.png?fit=crop&amp;format=auto&amp;height=80&amp;version=1517401093&amp;width=80" alt="Profile image for Andrii Rodzyk" className=" overflow-hidden rounded" width="40" height="40"/>
-                      </a>
+            <article className="group relative grid rounded-xl p-2 hover:bg-[#1e1f26]  ">
+              <div className=" relative grid items-stretch overflow-hidden rounded-md opacity-[0.99]">
+                <div className=" relative h-full rounded-md bg-[#444857] bg-cover pt-[56.25%]"></div>
+                <img
+                  src="https://shots.codepen.io/username/pen/KKEgQeG-1280.jpg?version=1704988946"
+                  className="absolute left-0 top-0 h-full w-full object-cover"
+                  alt=" SVG Filter — Cross Blur"
+                  loading="lazy"
+                ></img>
+              </div>
+              <div className="rounded-xl bg-[#1e1f26] p-3">
+                <header className="flex">
+                  <a href="#" className="relative mr-3">
+                    <img
+                      src="https://assets.codepen.io/1138011/internal/avatars/users/default.png?fit=crop&amp;format=auto&amp;height=80&amp;version=1517401093&amp;width=80"
+                      alt="Profile image for Andrii Rodzyk"
+                      className=" overflow-hidden rounded"
+                      width="40"
+                      height="40"
+                    />
+                  </a>
 
-                      <div className="w-[95%] overflow-hidden mr-1">
-                        <h2 className="font-bold mb-1 text-primary text-base">SVG Filter-Cross Blur</h2>
-                        <address className=" text-sm">
-                          <p className=" text-primary-dark">Andrii Rodzyk</p>
-                        </address>
-                      </div>
-                    </header>
-                    <footer className="mt-2 group-hover:visible invisible flex items-center text-xs text-primary">
-                      <button className="mr-1 rounded pointer inline-flex items-center text-center justify-center px-2 py-1 w-fit bg-[#5a5f73]">
-                      <FaHeart className="mr-[2px]"/>
-                      <span>19</span>
-                      </button>
-                      <button className="mr-1 rounded pointer inline-flex items-center text-center justify-center px-2 py-1 w-fit bg-[#5a5f73]">
-                      <FaMessage className="mr-[2px]"/>
-                      <span>0</span>
-                      </button>
-                      <button className="mr-1 rounded pointer inline-flex items-center text-center justify-center px-2 py-1 w-fit bg-[#5a5f73]">
-                      <FaEye className="mr-[2px]"/>
-                      <span>19</span>
-                      </button>
-                    </footer>
+                  <div className="mr-1 w-[95%] overflow-hidden">
+                    <h2 className="mb-1 text-base font-bold text-primary">
+                      SVG Filter-Cross Blur
+                    </h2>
+                    <address className=" text-sm">
+                      <p className=" text-primary-dark">Andrii Rodzyk</p>
+                    </address>
                   </div>
+                </header>
+                <footer className="invisible mt-2 flex items-center text-xs text-primary group-hover:visible">
+                  <button className="pointer mr-1 inline-flex w-fit items-center justify-center rounded bg-[#5a5f73] px-2 py-1 text-center">
+                    <FaHeart className="mr-[2px]" />
+                    <span>19</span>
+                  </button>
+                  <button className="pointer mr-1 inline-flex w-fit items-center justify-center rounded bg-[#5a5f73] px-2 py-1 text-center">
+                    <FaMessage className="mr-[2px]" />
+                    <span>0</span>
+                  </button>
+                  <button className="pointer mr-1 inline-flex w-fit items-center justify-center rounded bg-[#5a5f73] px-2 py-1 text-center">
+                    <FaEye className="mr-[2px]" />
+                    <span>19</span>
+                  </button>
+                </footer>
+              </div>
             </article>
-            <article className="group grid hover:bg-[#1e1f26] relative p-2 rounded-xl  ">
-             
-                  <div className=" opacity-[0.99] relative rounded-md overflow-hidden grid items-stretch">
-                      <div className=" h-full rounded-md pt-[56.25%] bg-[#444857] bg-cover relative"></div>
-                      <img src="https://shots.codepen.io/username/pen/ZENpKax-320.jpg?version=1716618343" className="absolute top-0 left-0 w-full h-full object-cover" alt=" SVG Filter — Cross Blur" loading="lazy"></img>
-                  </div>
-                  <div className="bg-[#1e1f26] p-3 rounded-xl">
-                    <header className="flex">
-                      <a href="#" className="relative mr-3">
-                      <img src="https://assets.codepen.io/1138011/internal/avatars/users/default.png?fit=crop&amp;format=auto&amp;height=80&amp;version=1517401093&amp;width=80" alt="Profile image for Andrii Rodzyk" className=" overflow-hidden rounded" width="40" height="40"/>
-                      </a>
+            <article className="group relative grid rounded-xl p-2 hover:bg-[#1e1f26]  ">
+              <div className=" relative grid items-stretch overflow-hidden rounded-md opacity-[0.99]">
+                <div className=" relative h-full rounded-md bg-[#444857] bg-cover pt-[56.25%]"></div>
+                <img
+                  src="https://shots.codepen.io/username/pen/ZENpKax-320.jpg?version=1716618343"
+                  className="absolute left-0 top-0 h-full w-full object-cover"
+                  alt=" SVG Filter — Cross Blur"
+                  loading="lazy"
+                ></img>
+              </div>
+              <div className="rounded-xl bg-[#1e1f26] p-3">
+                <header className="flex">
+                  <a href="#" className="relative mr-3">
+                    <img
+                      src="https://assets.codepen.io/1138011/internal/avatars/users/default.png?fit=crop&amp;format=auto&amp;height=80&amp;version=1517401093&amp;width=80"
+                      alt="Profile image for Andrii Rodzyk"
+                      className=" overflow-hidden rounded"
+                      width="40"
+                      height="40"
+                    />
+                  </a>
 
-                      <div className="w-[95%] overflow-hidden mr-1">
-                        <h2 className="font-bold mb-1 text-primary text-base">SVG Filter-Cross Blur</h2>
-                        <address className=" text-sm">
-                          <p className=" text-primary-dark">Andrii Rodzyk</p>
-                        </address>
-                      </div>
-                    </header>
-                    <footer className="mt-2 group-hover:visible invisible flex items-center text-xs text-primary">
-                      <button className="mr-1 rounded pointer inline-flex items-center text-center justify-center px-2 py-1 w-fit bg-[#5a5f73]">
-                      <FaHeart className="mr-[2px]"/>
-                      <span>19</span>
-                      </button>
-                      <button className="mr-1 rounded pointer inline-flex items-center text-center justify-center px-2 py-1 w-fit bg-[#5a5f73]">
-                      <FaMessage className="mr-[2px]"/>
-                      <span>0</span>
-                      </button>
-                      <button className="mr-1 rounded pointer inline-flex items-center text-center justify-center px-2 py-1 w-fit bg-[#5a5f73]">
-                      <FaEye className="mr-[2px]"/>
-                      <span>19</span>
-                      </button>
-                    </footer>
+                  <div className="mr-1 w-[95%] overflow-hidden">
+                    <h2 className="mb-1 text-base font-bold text-primary">
+                      SVG Filter-Cross Blur
+                    </h2>
+                    <address className=" text-sm">
+                      <p className=" text-primary-dark">Andrii Rodzyk</p>
+                    </address>
                   </div>
+                </header>
+                <footer className="invisible mt-2 flex items-center text-xs text-primary group-hover:visible">
+                  <button className="pointer mr-1 inline-flex w-fit items-center justify-center rounded bg-[#5a5f73] px-2 py-1 text-center">
+                    <FaHeart className="mr-[2px]" />
+                    <span>19</span>
+                  </button>
+                  <button className="pointer mr-1 inline-flex w-fit items-center justify-center rounded bg-[#5a5f73] px-2 py-1 text-center">
+                    <FaMessage className="mr-[2px]" />
+                    <span>0</span>
+                  </button>
+                  <button className="pointer mr-1 inline-flex w-fit items-center justify-center rounded bg-[#5a5f73] px-2 py-1 text-center">
+                    <FaEye className="mr-[2px]" />
+                    <span>19</span>
+                  </button>
+                </footer>
+              </div>
             </article>
-            <article className="group grid hover:bg-[#1e1f26] relative p-2 rounded-xl  ">
-             
-                  <div className=" opacity-[0.99] relative rounded-md overflow-hidden grid items-stretch">
-                      <div className=" h-full rounded-md pt-[56.25%] bg-[#444857] bg-cover relative"></div>
-                      <img src="https://shots.codepen.io/username/pen/KKEgQeG-1280.jpg?version=1704988946" className="absolute top-0 left-0 w-full h-full object-cover" alt=" SVG Filter — Cross Blur" loading="lazy"></img>
-                  </div>
-                  <div className="bg-[#1e1f26] p-3 rounded-xl">
-                    <header className="flex">
-                      <a href="#" className="relative mr-3">
-                      <img src="https://assets.codepen.io/1138011/internal/avatars/users/default.png?fit=crop&amp;format=auto&amp;height=80&amp;version=1517401093&amp;width=80" alt="Profile image for Andrii Rodzyk" className=" overflow-hidden rounded" width="40" height="40"/>
-                      </a>
+            <article className="group relative grid rounded-xl p-2 hover:bg-[#1e1f26]  ">
+              <div className=" relative grid items-stretch overflow-hidden rounded-md opacity-[0.99]">
+                <div className=" relative h-full rounded-md bg-[#444857] bg-cover pt-[56.25%]"></div>
+                <img
+                  src="https://shots.codepen.io/username/pen/KKEgQeG-1280.jpg?version=1704988946"
+                  className="absolute left-0 top-0 h-full w-full object-cover"
+                  alt=" SVG Filter — Cross Blur"
+                  loading="lazy"
+                ></img>
+              </div>
+              <div className="rounded-xl bg-[#1e1f26] p-3">
+                <header className="flex">
+                  <a href="#" className="relative mr-3">
+                    <img
+                      src="https://assets.codepen.io/1138011/internal/avatars/users/default.png?fit=crop&amp;format=auto&amp;height=80&amp;version=1517401093&amp;width=80"
+                      alt="Profile image for Andrii Rodzyk"
+                      className=" overflow-hidden rounded"
+                      width="40"
+                      height="40"
+                    />
+                  </a>
 
-                      <div className="w-[95%] overflow-hidden mr-1">
-                        <h2 className="font-bold mb-1 text-primary text-base">SVG Filter-Cross Blur</h2>
-                        <address className=" text-sm">
-                          <p className=" text-primary-dark">Andrii Rodzyk</p>
-                        </address>
-                      </div>
-                    </header>
-                    <footer className="mt-2 group-hover:visible invisible flex items-center text-xs text-primary">
-                      <button className="mr-1 rounded pointer inline-flex items-center text-center justify-center px-2 py-1 w-fit bg-[#5a5f73]">
-                      <FaHeart className="mr-[2px]"/>
-                      <span>19</span>
-                      </button>
-                      <button className="mr-1 rounded pointer inline-flex items-center text-center justify-center px-2 py-1 w-fit bg-[#5a5f73]">
-                      <FaMessage className="mr-[2px]"/>
-                      <span>0</span>
-                      </button>
-                      <button className="mr-1 rounded pointer inline-flex items-center text-center justify-center px-2 py-1 w-fit bg-[#5a5f73]">
-                      <FaEye className="mr-[2px]"/>
-                      <span>19</span>
-                      </button>
-                    </footer>
+                  <div className="mr-1 w-[95%] overflow-hidden">
+                    <h2 className="mb-1 text-base font-bold text-primary">
+                      SVG Filter-Cross Blur
+                    </h2>
+                    <address className=" text-sm">
+                      <p className=" text-primary-dark">Andrii Rodzyk</p>
+                    </address>
                   </div>
+                </header>
+                <footer className="invisible mt-2 flex items-center text-xs text-primary group-hover:visible">
+                  <button className="pointer mr-1 inline-flex w-fit items-center justify-center rounded bg-[#5a5f73] px-2 py-1 text-center">
+                    <FaHeart className="mr-[2px]" />
+                    <span>19</span>
+                  </button>
+                  <button className="pointer mr-1 inline-flex w-fit items-center justify-center rounded bg-[#5a5f73] px-2 py-1 text-center">
+                    <FaMessage className="mr-[2px]" />
+                    <span>0</span>
+                  </button>
+                  <button className="pointer mr-1 inline-flex w-fit items-center justify-center rounded bg-[#5a5f73] px-2 py-1 text-center">
+                    <FaEye className="mr-[2px]" />
+                    <span>19</span>
+                  </button>
+                </footer>
+              </div>
             </article>
-           
-
-
           </div>
         </section>
       </div>
+
+      {/* Feature Presentation */}
+      <section className="bg-[#18191e] pt-12 text-primary">
+        <div className="mb-12 text-center">
+          <h2 className=" mb-[10px] font-opensans text-3xl font-normal">
+            A front-end environment made for testing and sharing
+          </h2>
+          <p className="text-[#76daff]">Explore the Editor</p>
+        </div>
+
+        <div className="px-8 container">
+          <ImageSlider />
+        </div>
+      </section>
+
+
     </div>
   );
 }
