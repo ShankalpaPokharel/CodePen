@@ -39,7 +39,7 @@ function LandingPage() {
                     </div>
                 )}
 
-                <div className="w-full"> 
+                <div className="w-full overflow-clip"> 
                     <HeaderBar />
                     <LandingPageContent/>
                     

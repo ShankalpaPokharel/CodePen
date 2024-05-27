@@ -16,9 +16,8 @@ export default function LandingPageContent() {
     function animate() {};`;
 
   return (
-    
-    <div>
-      <div className=" h- bg-[#131417]">
+    <div className=" bg-[#131417]">
+      <div className=" h-full">
         <div className="container w-full overflow-clip xl:overflow-visible">
           {/* codepen logo */}
           <div className="flex items-center justify-center  lg:hidden">
@@ -44,7 +43,7 @@ export default function LandingPageContent() {
             <div className="relative w-full overflow-clip lg:grid lg:grid-cols-2 lg:gap-4 lg:overflow-visible ">
               {/* CodeBlock */}
               <div className="z-[2] mb-20 overflow-clip lg:order-2   lg:overflow-visible">
-                <div className="relative z-[2] min-h-[310px] h-full min-w-[455px] p-1">
+                <div className="relative z-[2] h-full min-h-[310px] min-w-[455px] p-1">
                   <div className="absolute left-[5%] top-0 mb-2 h-[310px] w-[90%] rounded-xl bg-gradient-to-r from-[#464954] to-[#202125] lg:h-[410px]"></div>
                   <div className="absolute left-[2.5%] top-5  w-[300px] lg:left-auto lg:right-[20px] lg:top-[-20px]">
                     <CodeBlock text="HTML" language="html" code={htmlCode} />
@@ -94,17 +93,70 @@ export default function LandingPageContent() {
               <img
                 src="https://cpwebassets.codepen.io/assets/packs/lines-2-4e66616a5ef291c3566a7ddfe1ffaaa8.svg"
                 alt=""
-                className="absolute  right-[-125px] top-[290px]  w-[545px] lg:bottom-[-410px] xl:bottom-[-480px]  lg:right-[-90px] lg:w-[600px] lg:top-auto "
+                className="absolute  right-[-125px] top-[290px]  w-[545px] lg:bottom-[-410px] lg:right-[-90px]  lg:top-auto lg:w-[600px] xl:bottom-[-480px] "
               />
             </div>
           </div>
         </div>
       </div>
 
-      
+      {/* another section  */}
+      <section className="relative py-12 border-none">
+        <div className="container mx-auto px-8 sm:px-8 lg:grid lg:grid-cols-3 lg:gap-8">
+
+          {/* item  */}
+          <div className="rounded-xl bg-[#2C303A] px-6 pb-8 pt-6 my-8 text-primary">
+            <div className="relative mb-4 mt-[-40px] h-[75px] w-[75px] rounded-xl bg-[#171613] pt-3">
+              <img
+                src="https://cpwebassets.codepen.io/assets/packs/icon-build-0f21c66ed03bfb36c597636d27ca621e.svg"
+                alt="Icon of conveyer belt with boxes on it."
+                className="mx-[10px]  h-auto max-w-full "
+              />
+            </div>
+            <h2 className="text-xl mb-[10px] font-normal">Build & Test</h2>
+            <p className="pb-4">Get work done quicker by building out <strong>entire projects</strong> or isolating code to <strong>test features and animations</strong>. Want to keep it all under wraps? <a href="/features/pro"><strong className="text-[#76daff] font-bold">Upgrade to a <span className="text-black p-1 bg-yellow-400 rounded-md">PRO</span> account </strong></a>to keep your work private.</p>
+
+            <Button text="Try the Editor" className="text-primary bg-[#444857] w-fit"></Button>
+          </div>
+          {/* item  */}
+          <div className="rounded-xl bg-[#2C303A] px-6 pb-8 pt-6 my-8 text-primary">
+            <div className="relative mb-4 mt-[-40px] h-[75px] w-[75px] rounded-xl bg-[#171613] pt-3">
+              <img
+                src="https://cpwebassets.codepen.io/assets/packs/icon-learn-b1311620e99cea826f259aa2f7750940.svg"
+                alt="Icon of conveyer belt with boxes on it."
+                className="mx-[10px]  h-auto max-w-full "
+              />
+            </div>
+            <h2 className="text-xl mb-[10px] font-normal">Build & Test</h2>
+            <p className="pb-4">Want to upgrade your skills and get noticed? Participating in CodePen Challenges is a great way to try something new. We frequently feature these Pens on our homepage and across social media!</p>
+
+            <Button text="Join this Week's Challenge" className="text-primary bg-[#444857] w-fit"></Button>
+          </div>
+         
+          {/* item  */}
+          <div className="rounded-xl bg-[#2C303A] px-6 pb-8 pt-6 my-8 text-primary">
+            <div className="relative mb-4 mt-[-40px] h-[75px] w-[75px] rounded-xl bg-[#171613] pt-3">
+              <img
+                src="https://cpwebassets.codepen.io/assets/packs/icon-share-910c683bbac21bf41fcf9aab64ebc957.svg"
+                alt="Icon of conveyer belt with boxes on it."
+                className="mx-[10px]  h-auto max-w-full "
+              />
+            </div>
+            <h2 className="text-xl mb-[10px] font-normal">Build & Test</h2>
+            
+            <p className="pb-4"> Become a part of the<strong className="font-bold">most active front-end community</strong> in the world by sharing work. Presenting at a conference? Show your code directly in the browser with <a href=""><strong className="text-[#76daff] font-bold">Presentation Mode</strong></a>.</p>
+ 
+            <Button text="Explore Trending" className="text-primary bg-[#444857] w-fit"></Button>
+          </div>
+         
+         {/* image  */}
+         <img src="https://cpwebassets.codepen.io/assets/packs/lines-4-4ea88270d73b7f6eaaa69e91aed97ddf.svg" alt="" className=" bottom-[-36px] absolute left-[-25%] w-[400px] h-auto max-w-full overflow-clip lg:left-[-10%]"/>
+
+
+
+
+        </div>
+      </section>
     </div>
-
-
-
   );
 }
