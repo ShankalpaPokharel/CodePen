@@ -27,4 +27,8 @@
       background-color: #ffffff; /* Cursor color, adjust as needed */
     }
   }
+  .grid-cols-auto-fill-minmax {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  }
+
 }
