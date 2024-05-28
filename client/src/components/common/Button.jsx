@@ -1,10 +1,11 @@
-import React from 'react'
+import React from "react";
 
-export default function Button({text,className}) {
-  
+export default function Button({ text, className }) {
   return (
-    <div className={`text-[13px] px-1 md:text-xs flex items-center text-center justify-center sm:px-4 py-2 min-w-14 overflow-clip rounded-md ${className}`}>
-        {text}
+    <div
+      className={`flex min-w-14 items-center justify-center overflow-clip rounded-md px-1 py-2 text-center text-[13px] sm:px-4 md:text-xs ${className}`}
+    >
+      {text}
     </div>
-  )
+  );
 }

@@ -3,7 +3,7 @@ import { FaCodepen } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="container relative py-10">
+    <footer className="container relative py-10 bg-black">
       <div className="grid grid-cols-2 gap-8 px-[10px] sm:mb-2 sm:flex sm:flex-col sm:gap-0">
         <nav className="mb-2 text-primary-dark sm:flex sm:items-center sm:gap-2">
           <h4 className="text-xl font-bold text-primary">CodePen</h4>

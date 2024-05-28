@@ -4,6 +4,7 @@ import Header from "../common/Header";
 
 import { RiMenuFold4Line } from "react-icons/ri";
 import LandingPageContent from "../LandingPageContent";
+import Signup from "../Signup";
 
 function LandingPage() {
     // const [count, setCount] = useState(0);
@@ -41,7 +42,8 @@ function LandingPage() {
 
                 <div className="w-full overflow-clip"> 
                     <HeaderBar />
-                    <LandingPageContent/>
+                    {/* <LandingPageContent/>  */}
+                    <Signup/>
                     
                 </div>
             
