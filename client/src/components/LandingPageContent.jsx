@@ -206,7 +206,7 @@ export default function LandingPageContent() {
 
       {/* inspirational deisgn  */}
       <div>
-        <section className=" px-8 pt-12 ">
+        <section className="pt-12 ">
           <div className="grid-cols-auto-fill-minmax container grid items-start gap-12">
             <div className=" flex min-h-full w-full  flex-col ">
               <h2 className="mb-[10px] text-2xl font-normal text-primary">
@@ -475,20 +475,20 @@ export default function LandingPageContent() {
       {/* Get Started Quicker  */}
       <section className="bg relative   bg-[#131417] py-20">
         <div className="container relative px-[10px]">
-          <div className="relative grid grid-cols-3 gap-4 px-[10px] xl:grid-cols-6 z-10">
-            <div className="flex flex-col row-start-1 row-end-2 col-start-3 col-end-4 xl:col-start-6 xl:col-end-6">
+          <div className="relative z-10 grid grid-cols-3 gap-4 px-[10px] xl:grid-cols-6">
+            <div className="col-start-3 col-end-4 row-start-1 row-end-2 flex flex-col xl:col-start-6 xl:col-end-6">
               <h2 className=" mb-2 font-opensans text-2xl font-normal text-primary">
                 Get Started Quicker
               </h2>
-              <p className="mb-4 text-primary-dark text-xs">
-                Get inspiration from Pens using frameworks, libraries, and design
-                patterns. Then, start your own with{" "}
+              <p className="mb-4 text-xs text-primary-dark">
+                Get inspiration from Pens using frameworks, libraries, and
+                design patterns. Then, start your own with{" "}
                 <strong>premade templates</strong>.
               </p>
-              <p className="text-[#76daff] text-sm">Explore Topics</p>
+              <p className="text-sm text-[#76daff]">Explore Topics</p>
             </div>
             {/* react item  */}
-            <div className="scale-95 hover:scale-100 hover:transform rounded-md bg-[#2c303a] shadow-lg hover:transition-all hover:duration-300 hover:ease-linear cursor-pointer">
+            <div className="scale-95 cursor-pointer rounded-md bg-[#2c303a] shadow-lg hover:scale-100 hover:transform hover:transition-all hover:duration-300 hover:ease-linear">
               <div className="p-12 text-center">
                 <svg
                   className="m-auto h-auto w-full"
@@ -501,56 +501,187 @@ export default function LandingPageContent() {
                     <path d="M520.5 78.1z"></path>
                   </g>
                 </svg>
-                <h3 className=" absolute bottom-6 text-center left-0 w-full text-2xl font-semibold text-[#76daff]">React</h3>
+                <h3 className=" absolute bottom-6 left-0 w-full text-center text-2xl font-semibold text-[#76daff]">
+                  React
+                </h3>
               </div>
             </div>
             {/*vue item  */}
-            <div className="scale-95 hover:scale-100 hover:transform rounded-md bg-[#2c303a] shadow-lg hover:transition-all hover:duration-300 hover:ease-linear cursor-pointer">
+            <div className="scale-95 cursor-pointer rounded-md bg-[#2c303a] shadow-lg hover:scale-100 hover:transform hover:transition-all hover:duration-300 hover:ease-linear">
               <div className="p-12 text-center">
                 <svg
                   className="m-auto h-auto w-full"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 -10 196.32 190.02"
                 >
-                  <path fill="#42b883" d="M120.83 0 98.16 39.26 75.49 0H0l98.16 170.02L196.32 0h-75.49z"></path>
-                  <path fill="#35495e" d="M120.83 0 98.16 39.26 75.49 0H39.26l58.9 102.01L157.06 0h-36.23z"></path>
+                  <path
+                    fill="#42b883"
+                    d="M120.83 0 98.16 39.26 75.49 0H0l98.16 170.02L196.32 0h-75.49z"
+                  ></path>
+                  <path
+                    fill="#35495e"
+                    d="M120.83 0 98.16 39.26 75.49 0H39.26l58.9 102.01L157.06 0h-36.23z"
+                  ></path>
                 </svg>
-                <h3 className=" absolute bottom-6 text-center left-0 w-full text-2xl font-semibold text-[#76daff]">Vue</h3>
+                <h3 className=" absolute bottom-6 left-0 w-full text-center text-2xl font-semibold text-[#76daff]">
+                  Vue
+                </h3>
               </div>
             </div>
             {/* talwind item  */}
-            <div className="scale-95 hover:scale-100 hover:transform rounded-md bg-[#2c303a] shadow-lg hover:transition-all hover:duration-300 hover:ease-linear cursor-pointer">
-              <div className="p-12 text-center flex justify-center">
-              <svg className="m-auto  h-20 w-20 sm:w-24 sm:h-24 block " width="512" height="384"  viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient x1="0%" y1="0%" y2="100%" id="a"><stop stop-color="#2383AE" offset="0%"></stop><stop stop-color="#6DD7B9" offset="100%"></stop></linearGradient></defs><path d="M10 8c1.333-5.333 4.667-8 10-8 8 0 9 6 13 7 2.667.667 5-.333 7-3-1.333 5.333-4.667 8-10 8-8 0-9-6-13-7-2.667-.667-5 .333-7 3zM0 20c1.333-5.333 4.667-8 10-8 8 0 9 6 13 7 2.667.667 5-.333 7-3-1.333 5.333-4.667 8-10 8-8 0-9-6-13-7-2.667-.667-5 .333-7 3z" transform="translate(4 12)" fill="url(#a)"></path></svg>
-                <h3 className=" absolute bottom-6 text-center left-0 w-full text-2xl font-semibold text-[#76daff]">Tailwind</h3>
+            <div className="scale-95 cursor-pointer rounded-md bg-[#2c303a] shadow-lg hover:scale-100 hover:transform hover:transition-all hover:duration-300 hover:ease-linear">
+              <div className="flex justify-center p-12 text-center">
+                <svg
+                  className="m-auto  block h-20 w-20 sm:h-24 sm:w-24 "
+                  width="512"
+                  height="384"
+                  viewBox="0 0 48 48"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <defs>
+                    <linearGradient x1="0%" y1="0%" y2="100%" id="a">
+                      <stop stopColor="#2383AE" offset="0%"></stop>
+                      <stop stopColor="#6DD7B9" offset="100%"></stop>
+                    </linearGradient>
+                  </defs>
+                  <path
+                    d="M10 8c1.333-5.333 4.667-8 10-8 8 0 9 6 13 7 2.667.667 5-.333 7-3-1.333 5.333-4.667 8-10 8-8 0-9-6-13-7-2.667-.667-5 .333-7 3zM0 20c1.333-5.333 4.667-8 10-8 8 0 9 6 13 7 2.667.667 5-.333 7-3-1.333 5.333-4.667 8-10 8-8 0-9-6-13-7-2.667-.667-5 .333-7 3z"
+                    transform="translate(4 12)"
+                    fill="url(#a)"
+                  ></path>
+                </svg>
+                <h3 className=" absolute bottom-6 left-0 w-full text-center text-2xl font-semibold text-[#76daff]">
+                  Tailwind
+                </h3>
               </div>
             </div>
             {/* Sass item  */}
-            <div className="scale-95 hover:scale-100 hover:transform rounded-md bg-[#2c303a] shadow-lg hover:transition-all hover:duration-300 hover:ease-linear cursor-pointer">
+            <div className="scale-95 cursor-pointer rounded-md bg-[#2c303a] shadow-lg hover:scale-100 hover:transform hover:transition-all hover:duration-300 hover:ease-linear">
               <div className="p-12 text-center">
-              <svg className="m-auto h-auto w-full" xmlns="http://www.w3.org/2000/svg" width="512" height="384" viewBox="0 0 512 384"><path fill="#CF649A" d="M440.6 220.6c-17.9.1-33.4 4.4-46.4 10.8-4.8-9.5-9.6-17.8-10.4-24-.9-7.2-2-11.6-.9-20.2s6.1-20.8 6.1-21.8c-.1-.9-1.1-5.3-11.4-5.4-10.3-.1-19.2 2-20.2 4.7s-3 8.9-4.3 15.3c-1.8 9.4-20.6 42.7-31.3 60.2-3.5-6.8-6.5-12.8-7.1-17.6-.9-7.2-2-11.6-.9-20.2s6.1-20.8 6.1-21.8c-.1-.9-1.1-5.3-11.4-5.4-10.3-.1-19.2 2-20.2 4.7s-2.1 9.1-4.3 15.3c-2.1 6.2-27.1 61.8-33.6 76.3-3.3 7.4-6.2 13.3-8.3 17.3s-.1.3-.3.7c-1.8 3.4-2.8 5.3-2.8 5.3v.1c-1.4 2.5-2.9 4.9-3.6 4.9-.5 0-1.5-6.7.2-15.9 3.7-19.3 12.7-49.4 12.6-50.5 0-.5 1.7-5.8-5.8-8.5-7.3-2.7-9.9 1.8-10.5 1.8-.6 0-1.1 1.6-1.1 1.6s8.1-33.9-15.5-33.9c-14.8 0-35.2 16.1-45.3 30.8-6.4 3.5-20 10.9-34.4 18.8-5.5 3-11.2 6.2-16.6 9.1l-1.1-1.2c-28.6-30.5-81.5-52.1-79.3-93.1.8-14.9 6-54.2 101.6-101.8 78.3-39 141-28.3 151.9-4.5 15.5 34-33.5 97.2-114.9 106.3-31 3.5-47.3-8.5-51.4-13-4.3-4.7-4.9-4.9-6.5-4-2.6 1.4-1 5.6 0 8.1 2.4 6.3 12.4 17.5 29.4 23.1 14.9 4.9 51.3 7.6 95.3-9.4 49.3-19.1 87.8-72.1 76.5-116.4-11.5-45.1-86.3-59.9-157-34.8-42.1 15-87.7 38.4-120.5 69.1C4 117.9-2.2 149.7.4 162.9c9.1 47.1 74 77.8 100 100.5-1.3.7-2.5 1.4-3.6 2-13 6.4-62.5 32.3-74.9 59.7-14 31 2.2 53.3 13 56.3 33.4 9.3 67.6-7.4 86.1-34.9 18.4-27.5 16.2-63.2 7.7-79.5l-.3-.6 10.2-6c6.6-3.9 13.1-7.5 18.8-10.6-3.2 8.7-5.5 19-6.7 34-1.4 17.6 5.8 40.4 15.3 49.4 4.2 3.9 9.2 4 12.3 4 11 0 16-9.1 21.5-20 6.8-13.3 12.8-28.7 12.8-28.7s-7.5 41.7 13 41.7c7.5 0 15-9.7 18.4-14.7v.1s.2-.3.6-1c.8-1.2 1.2-1.9 1.2-1.9v-.2c3-5.2 9.7-17.1 19.7-36.8 12.9-25.4 25.3-57.2 25.3-57.2s1.2 7.8 4.9 20.6c2.2 7.6 7 15.9 10.7 24-3 4.2-4.8 6.6-4.8 6.6l.1.1c-2.4 3.2-5.1 6.6-7.9 10-10.2 12.2-22.4 26.1-24 30.1-1.9 4.7-1.5 8.2 2.2 11 2.7 2 7.5 2.4 12.6 2 9.2-.6 15.6-2.9 18.8-4.3 5-1.8 10.7-4.5 16.2-8.5 10-7.4 16.1-17.9 15.5-31.9-.3-7.7-2.8-15.3-5.9-22.5.9-1.3 1.8-2.6 2.7-4 15.8-23.1 28-48.5 28-48.5s1.2 7.8 4.9 20.6c1.9 6.5 5.7 13.6 9.1 20.6-14.8 12.1-24.1 26.1-27.3 35.3-5.9 17-1.3 24.7 7.4 26.5 3.9.8 9.5-1 13.7-2.8 5.2-1.7 11.5-4.6 17.3-8.9 10-7.4 19.6-17.7 19.1-31.6-.3-6.4-2-12.7-4.3-18.7 12.6-5.2 28.9-8.2 49.6-5.7 44.5 5.2 53.3 33 51.6 44.6-1.7 11.6-11 18-14.1 20-3.1 1.9-4.1 2.6-3.8 4 .4 2.1 1.8 2 4.5 1.6 3.7-.6 23.4-9.5 24.2-30.9 1.2-27.5-24.9-57.5-71.2-57.2zM97.4 336.3c-14.7 16.1-35.4 22.2-44.2 17-9.5-5.5-5.8-29.2 12.3-46.3 11-10.4 25.3-20 34.7-25.9 2.1-1.3 5.3-3.2 9.1-5.5.6-.4 1-.6 1-.6.7-.4 1.5-.9 2.3-1.4 6.7 24.4.3 45.8-15.2 62.7zm107.5-73.1c-5.1 12.5-15.9 44.6-22.4 42.8-5.6-1.5-9-25.8-1.1-49.8 4-12.1 12.5-26.5 17.5-32.1 8.1-9 16.9-12 19.1-8.3 2.6 4.8-9.9 39.6-13.1 47.4zm88.7 42.4c-2.2 1.1-4.2 1.9-5.1 1.3-.7-.4.9-1.9.9-1.9s11.1-11.9 15.5-17.4c2.5-3.2 5.5-6.9 8.7-11.1v1.2c0 14.4-13.8 24-20 27.9zM362 290c-1.6-1.2-1.4-4.9 4-16.5 2.1-4.6 6.9-12.3 15.2-19.6 1 3 1.6 5.9 1.5 8.6-.1 18-12.9 24.7-20.7 27.5z"></path></svg>
-                <h3 className=" absolute bottom-6 text-center left-0 w-full text-2xl font-semibold text-[#76daff]">Sass</h3>
+                <svg
+                  className="m-auto h-auto w-full"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="512"
+                  height="384"
+                  viewBox="0 0 512 384"
+                >
+                  <path
+                    fill="#CF649A"
+                    d="M440.6 220.6c-17.9.1-33.4 4.4-46.4 10.8-4.8-9.5-9.6-17.8-10.4-24-.9-7.2-2-11.6-.9-20.2s6.1-20.8 6.1-21.8c-.1-.9-1.1-5.3-11.4-5.4-10.3-.1-19.2 2-20.2 4.7s-3 8.9-4.3 15.3c-1.8 9.4-20.6 42.7-31.3 60.2-3.5-6.8-6.5-12.8-7.1-17.6-.9-7.2-2-11.6-.9-20.2s6.1-20.8 6.1-21.8c-.1-.9-1.1-5.3-11.4-5.4-10.3-.1-19.2 2-20.2 4.7s-2.1 9.1-4.3 15.3c-2.1 6.2-27.1 61.8-33.6 76.3-3.3 7.4-6.2 13.3-8.3 17.3s-.1.3-.3.7c-1.8 3.4-2.8 5.3-2.8 5.3v.1c-1.4 2.5-2.9 4.9-3.6 4.9-.5 0-1.5-6.7.2-15.9 3.7-19.3 12.7-49.4 12.6-50.5 0-.5 1.7-5.8-5.8-8.5-7.3-2.7-9.9 1.8-10.5 1.8-.6 0-1.1 1.6-1.1 1.6s8.1-33.9-15.5-33.9c-14.8 0-35.2 16.1-45.3 30.8-6.4 3.5-20 10.9-34.4 18.8-5.5 3-11.2 6.2-16.6 9.1l-1.1-1.2c-28.6-30.5-81.5-52.1-79.3-93.1.8-14.9 6-54.2 101.6-101.8 78.3-39 141-28.3 151.9-4.5 15.5 34-33.5 97.2-114.9 106.3-31 3.5-47.3-8.5-51.4-13-4.3-4.7-4.9-4.9-6.5-4-2.6 1.4-1 5.6 0 8.1 2.4 6.3 12.4 17.5 29.4 23.1 14.9 4.9 51.3 7.6 95.3-9.4 49.3-19.1 87.8-72.1 76.5-116.4-11.5-45.1-86.3-59.9-157-34.8-42.1 15-87.7 38.4-120.5 69.1C4 117.9-2.2 149.7.4 162.9c9.1 47.1 74 77.8 100 100.5-1.3.7-2.5 1.4-3.6 2-13 6.4-62.5 32.3-74.9 59.7-14 31 2.2 53.3 13 56.3 33.4 9.3 67.6-7.4 86.1-34.9 18.4-27.5 16.2-63.2 7.7-79.5l-.3-.6 10.2-6c6.6-3.9 13.1-7.5 18.8-10.6-3.2 8.7-5.5 19-6.7 34-1.4 17.6 5.8 40.4 15.3 49.4 4.2 3.9 9.2 4 12.3 4 11 0 16-9.1 21.5-20 6.8-13.3 12.8-28.7 12.8-28.7s-7.5 41.7 13 41.7c7.5 0 15-9.7 18.4-14.7v.1s.2-.3.6-1c.8-1.2 1.2-1.9 1.2-1.9v-.2c3-5.2 9.7-17.1 19.7-36.8 12.9-25.4 25.3-57.2 25.3-57.2s1.2 7.8 4.9 20.6c2.2 7.6 7 15.9 10.7 24-3 4.2-4.8 6.6-4.8 6.6l.1.1c-2.4 3.2-5.1 6.6-7.9 10-10.2 12.2-22.4 26.1-24 30.1-1.9 4.7-1.5 8.2 2.2 11 2.7 2 7.5 2.4 12.6 2 9.2-.6 15.6-2.9 18.8-4.3 5-1.8 10.7-4.5 16.2-8.5 10-7.4 16.1-17.9 15.5-31.9-.3-7.7-2.8-15.3-5.9-22.5.9-1.3 1.8-2.6 2.7-4 15.8-23.1 28-48.5 28-48.5s1.2 7.8 4.9 20.6c1.9 6.5 5.7 13.6 9.1 20.6-14.8 12.1-24.1 26.1-27.3 35.3-5.9 17-1.3 24.7 7.4 26.5 3.9.8 9.5-1 13.7-2.8 5.2-1.7 11.5-4.6 17.3-8.9 10-7.4 19.6-17.7 19.1-31.6-.3-6.4-2-12.7-4.3-18.7 12.6-5.2 28.9-8.2 49.6-5.7 44.5 5.2 53.3 33 51.6 44.6-1.7 11.6-11 18-14.1 20-3.1 1.9-4.1 2.6-3.8 4 .4 2.1 1.8 2 4.5 1.6 3.7-.6 23.4-9.5 24.2-30.9 1.2-27.5-24.9-57.5-71.2-57.2zM97.4 336.3c-14.7 16.1-35.4 22.2-44.2 17-9.5-5.5-5.8-29.2 12.3-46.3 11-10.4 25.3-20 34.7-25.9 2.1-1.3 5.3-3.2 9.1-5.5.6-.4 1-.6 1-.6.7-.4 1.5-.9 2.3-1.4 6.7 24.4.3 45.8-15.2 62.7zm107.5-73.1c-5.1 12.5-15.9 44.6-22.4 42.8-5.6-1.5-9-25.8-1.1-49.8 4-12.1 12.5-26.5 17.5-32.1 8.1-9 16.9-12 19.1-8.3 2.6 4.8-9.9 39.6-13.1 47.4zm88.7 42.4c-2.2 1.1-4.2 1.9-5.1 1.3-.7-.4.9-1.9.9-1.9s11.1-11.9 15.5-17.4c2.5-3.2 5.5-6.9 8.7-11.1v1.2c0 14.4-13.8 24-20 27.9zM362 290c-1.6-1.2-1.4-4.9 4-16.5 2.1-4.6 6.9-12.3 15.2-19.6 1 3 1.6 5.9 1.5 8.6-.1 18-12.9 24.7-20.7 27.5z"
+                  ></path>
+                </svg>
+                <h3 className=" absolute bottom-6 left-0 w-full text-center text-2xl font-semibold text-[#76daff]">
+                  Sass
+                </h3>
               </div>
             </div>
             {/* Gsap item  */}
-            <div className="scale-95 hover:scale-100 hover:transform rounded-md bg-[#2c303a] shadow-lg hover:transition-all hover:duration-300 hover:ease-linear cursor-pointer">
+            <div className="scale-95 cursor-pointer rounded-md bg-[#2c303a] shadow-lg hover:scale-100 hover:transform hover:transition-all hover:duration-300 hover:ease-linear">
               <div className="p-12 text-center">
-              <img className="m-auto h-auto w-full" src="https://seeklogo.com/images/G/greensock-gsap-icon-logo-13BB451E88-seeklogo.com.png" alt="" />
-                <h3 className=" absolute bottom-6 text-center left-0 w-full text-2xl font-semibold text-[#76daff]">GSAP</h3>
+                <img
+                  className="m-auto h-auto w-full"
+                  src="https://seeklogo.com/images/G/greensock-gsap-icon-logo-13BB451E88-seeklogo.com.png"
+                  alt=""
+                />
+                <h3 className=" absolute bottom-6 left-0 w-full text-center text-2xl font-semibold text-[#76daff]">
+                  GSAP
+                </h3>
               </div>
             </div>
           </div>
-          <img src="https://cpwebassets.codepen.io/assets/packs/lines-3-4541e35a1939230404d773f7eeddcc9b.svg" alt="" className="absolute bottom-[-70px] left-[-100px] w-[900px]"/>
+          <img
+            src="https://cpwebassets.codepen.io/assets/packs/lines-3-4541e35a1939230404d773f7eeddcc9b.svg"
+            alt=""
+            className="absolute bottom-[-70px] left-[-100px] w-[900px]"
+          />
         </div>
       </section>
 
-      
+      {/* Bring the whole team */}
+      <section className="bg relative bg-[#131417] py-12">
+        <div className="container relative ">
+          {/* content  */}
+          <div className="relative z-[1]  rounded-md bg-[#1e1f26] p-12">
+            <div className="mx-auto mb-12 mt-0 flex w-full max-w-[560px] flex-col items-center text-center ">
+              <h2 className=" mb-[10px] text-2xl font-bold text-primary">
+                Bring the Whole Team
+              </h2>
+              <p className="mb-4 text-primary-dark">
+                Each team and team member gets all the features of a PRO
+                membership. That means the Team can do things like upload
+                Assets, use features like Collab Mode, Professor Mode,
+                Presentation Mode, and Live View, and apply custom CSS to Posts,
+                Profiles, and Embeds.
+              </p>
+
+              <Button
+                className=" bg-green-bt px-4 text-black hover:bg-green-bt-h"
+                text="Start a Team"
+              />
+            </div>
+            <h3 className=" bold mb-[10px] text-center font-opensans text-xl text-primary">
+              Loved by hundreds of teams, including:
+            </h3>
+
+            <div className="flex flex-wrap items-center justify-center">
+              <img
+                src="https://cpwebassets.codepen.io/assets/packs/airbnb-cb44d3434e60956b120c2cfd2afa9a23.png"
+                alt="Airbnb"
+                className="w-[68px] p-4"
+              />
+              <img
+                src="https://cpwebassets.codepen.io/assets/packs/grubhub-f05150a98afe6175f221f4bc75ac3372.png"
+                alt="Grubhub"
+                className="w-[149px] p-4"
+              />
+              <img
+                src="https://cpwebassets.codepen.io/assets/packs/square-e4a6fa8c30a53180c593a11aeb1618c2.png"
+                alt="Square"
+                className="w-[71px] p-4"
+              />
+              <img
+                src="https://cpwebassets.codepen.io/assets/packs/netflix-8b4f0b76ad5ccaa1b6326267be6c396f.png"
+                alt="Netflix"
+                className="w-[125px] p-4"
+              />
+              <img
+                src="https://cpwebassets.codepen.io/assets/packs/adobe-0d9fee1af16f2db73270e52fbdcf4fe8.png"
+                alt="Adobe"
+                className="w-[72px] p-4"
+              />
+              <img
+                src="https://cpwebassets.codepen.io/assets/packs/salesforce-63204abcda6bd196c6a6da3bb4911510.png"
+                alt="Salesforce"
+                className="w-[137px] p-4"
+              />
+              <img
+                src="https://cpwebassets.codepen.io/assets/packs/microsoft-0859118499110df3a66f00a999a53a40.png"
+                alt="Microsoft"
+                className="w-[209px] p-4"
+              />
+              <img
+                src="https://cpwebassets.codepen.io/assets/packs/lyft-87acc577a28f7c5fbafbed09b543dd91.png"
+                alt="Lyft"
+                className="w-[70px] p-4"
+              />
+              <img
+                src="https://cpwebassets.codepen.io/assets/packs/ibm-c6d225a3817a57e66f67fdcb18d1fe04.png"
+                alt="IBM"
+                className="w-[121px] p-4"
+              />
+            </div>
+          </div>
+
+          {/* img  */}
+          <img
+            src="https://cpwebassets.codepen.io/assets/packs/lines-1-6ac7ba4c47562c61c5018028fd2b7a0e.svg"
+            alt=""
+            className="absolute bottom-[-50px] right-[-10%] w-[400px]"
+          />
+        </div>
+      </section>
     </div>
   );
 }
-
-
-
-
 
 // className="m-auto h-auto w-full"

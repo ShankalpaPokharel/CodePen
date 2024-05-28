@@ -12,7 +12,7 @@
 
 @layer components{
   .container{
-    @apply sm:px-8 max-w-[1200px] mx-auto
+    @apply px-8 max-w-[1200px] mx-auto
   }
   .blinking-cursor {
     /* Your custom styles for the blinking cursor */
