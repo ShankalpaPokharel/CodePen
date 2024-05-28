@@ -6,6 +6,7 @@ import Button from "./common/Button";
 import { FaHeart, FaEye } from "react-icons/fa";
 import { FaMessage } from "react-icons/fa6";
 import ImageSlider from "./ImageSlider";
+import Footer from "./common/Footer";
 
 export default function LandingPageContent() {
   const htmlCode = `<div class="rect"></div>`;
@@ -106,7 +107,7 @@ export default function LandingPageContent() {
 
       {/* another section  */}
       <section className="relative border-none py-12">
-        <div className="container mx-auto px-8 sm:px-8 lg:grid lg:grid-cols-3 lg:gap-8">
+        <div className="container relative mx-auto px-8 sm:px-8 lg:grid lg:grid-cols-3 lg:gap-8">
           {/* item  */}
           <div className="my-8 rounded-xl bg-[#2C303A] px-6 pb-8 pt-6 text-primary">
             <div className="relative mb-4 mt-[-40px] h-[75px] w-[75px] rounded-xl bg-[#171613] pt-3">
@@ -680,6 +681,12 @@ export default function LandingPageContent() {
           />
         </div>
       </section>
+
+      <section>
+      <Footer/>
+      </section>
+
+
     </div>
   );
 }
