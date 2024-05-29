@@ -11,10 +11,14 @@
   },
   "dependencies": {
     "@headlessui/react": "^2.0.4",
+    "@uiw/codemirror-extensions-langs": "^4.22.1",
+    "@uiw/codemirror-theme-github": "^4.22.1",
+    "@uiw/react-codemirror": "^4.22.1",
     "prismjs": "^1.29.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.2.1",
+    "react-resizable-panels": "^2.0.19",
     "react-syntax-highlighter": "^15.5.0"
   },
   "devDependencies": {

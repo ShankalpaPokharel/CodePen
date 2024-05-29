@@ -62,9 +62,12 @@ import { Transition } from '@headlessui/react';
 
 
 
+npm i react-resizable-panels
 
 
-
+npm install @uiw/react-codemirror
+npm install @uiw/codemirror-theme-github
+npm install @uiw/codemirror-extensions-langs
 
 
 
