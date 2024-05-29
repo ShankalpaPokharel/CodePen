@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import CodeEditorHeader from "../CodeEditorHeader";
 import DynamicDiv from "../DynamicDiv"
 
@@ -9,18 +9,45 @@ export default function CodeEditorPage() {
   const [htmlCode, setHtmlCode] = useState("<div>Hello, world!</div>");
   const [cssCode, setCssCode] = useState("body { background-color: #f0f0f0; }");
   const [jsCode, setJsCode] = useState('console.log("Hello, world!");');
+  const [layout, setLayout] = useState(1)
+
+  const handleScreenSizeChange = () => {
+    if (window.innerWidth <= 768) {
+        setDirection("vertical");
+      setBtn(false);
+      setLayout(1);
+    }
+  };
+
+  useEffect(() => {
+    // Initial check for screen size
+    handleScreenSizeChange();
+
+    // Add event listener for screen resize
+    window.addEventListener("resize", handleScreenSizeChange);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleScreenSizeChange);
+    };
+  }, []);
+  console.log((layout))
+
 
   const handleButtonClick = (divNumber) => {
     setActiveDiv(divNumber);
     if (divNumber === 1) {
       setDirection("vertical");
       setBtn(false);
+      setLayout(1);
     } else if (divNumber === 2) {
       setDirection("horizontal");
       setBtn(false);
+      setLayout(2);
     } else if (divNumber === 3) {
       setDirection("horizontal");
       setBtn(true);
+      setLayout(3);
     }
   };
 
@@ -48,8 +75,9 @@ export default function CodeEditorPage() {
         <button onClick={() => handleButtonClick(3)}>Button 3</button>
       </div>
   
-      <div className="flex-1">
+      <div className={`flex-1 `}>
           <DynamicDiv
+            layout={layout}
             direction={direction}
             btn={btn}
             htmlCode={htmlCode}

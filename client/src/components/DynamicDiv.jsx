@@ -1,5 +1,5 @@
 // DynamicDiv.js
-import React from "react";
+import React, { useState } from "react";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import CodeMirror from "@uiw/react-codemirror";
 import { githubDark } from "@uiw/codemirror-theme-github";
@@ -7,7 +7,6 @@ import { langs } from "@uiw/codemirror-extensions-langs";
 
 import { IoIosSettings } from "react-icons/io";
 import { FaAngleDown } from "react-icons/fa";
-
 
 const DynamicDiv = ({
   direction,
@@ -19,13 +18,50 @@ const DynamicDiv = ({
   onCssChange,
   onJsChange,
   generateWeb,
+  layout
 }) => {
+  const [selected, setSelected] = useState("html");
+
   return (
     <div className="h-screen">
+      {/* Choose Language Nav for small  */}
+      <div className="flex items-center justify-between bg-black pr-3 md:hidden">
+        <div className="flex gap-[1px]">
+          <button
+            onClick={(e) => setSelected("html")}
+            className="flex w-fit items-center gap-1  bg-[#333338] px-3 py-2"
+          >
+            <h2 className="text-primary-dark">HTML</h2>
+          </button>
+          <button
+            onClick={(e) => setSelected("css")}
+            className="flex w-fit items-center gap-1  bg-[#333338] px-3 py-2"
+          >
+            <h2 className="text-primary-dark">CSS</h2>
+          </button>
+          <button
+            onClick={(e) => setSelected("js")}
+            className="flex w-fit items-center gap-1  bg-[#333338] px-3 py-2"
+          >
+            <h2 className="text-primary-dark">JS</h2>
+          </button>
+        </div>
+        <div className="flex items-center gap-2">
+          <div className="rounded bg-[#444857] p-2">
+            <IoIosSettings className="text-white" />
+          </div>
+          <div className="rounded bg-[#444857] p-2">
+            <FaAngleDown className="text-white" />
+          </div>
+        </div>
+      </div>
+      {/* Choose Language Nav for small  end*/}
+
+      {/* Code Editor start  */}
       <div className="h-full w-full">
-        <PanelGroup direction={direction} className=" h-72">
+        <PanelGroup direction={direction} className="h-72">
           {btn ? (
-            <Panel className="border">
+            <Panel id="panel1" order={1} className="border">
               <iframe
                 title="Result"
                 srcDoc={generateWeb()}
@@ -34,13 +70,18 @@ const DynamicDiv = ({
               />
             </Panel>
           ) : null}
-          {btn ? <PanelResizeHandle className="w-1 bg-blue-500" /> : null}
-          <Panel>
+          {btn ? <PanelResizeHandle className={`${layout==3&& "w-4 h-full bg-black"}`}/> : null}
+          <Panel id="panel2" order={2}>
             <PanelGroup
               direction={direction === "horizontal" ? "vertical" : "horizontal"}
             >
-              <Panel className=" min-w-5 border bg-[#0d1117]">
-                <div className="flex items-center justify-between pr-3">
+              {/* Html Editor  */}
+              <Panel
+                id="subpanel1"
+                order={1}
+                className={` bg-black ${selected == "html" ? null : "hidden md:block"}`}
+              >
+                <div className="hidden items-center justify-between pr-3 md:flex">
                   <div className="flex w-fit items-center gap-1 border-t-2 border-gray-500 bg-[#333338] px-3 py-2">
                     <svg
                       viewBox="0 0 15 15"
@@ -53,7 +94,7 @@ const DynamicDiv = ({
                         fill="#28282B"
                       ></path>
                     </svg>
-                    <h2 className=" text-primary-dark">HTML</h2>
+                    <h2 className="text-primary-dark">HTML</h2>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="rounded bg-[#444857] p-2">
@@ -73,13 +114,20 @@ const DynamicDiv = ({
                   className="bg-red-500"
                 ></CodeMirror>
               </Panel>
+              {/* Html Editor  end*/}
+
               <PanelResizeHandle />
-              <Panel className=" bg-[#0d1117]">
-                <div className="flex items-center justify-between pr-3">
+
+              {/* Css Editor  */}
+              <Panel
+                id="subpanel2"
+                order={2}
+                className={` bg-black ${selected == "css" ? null : "hidden md:block"}`}
+              >
+                <div className="hidden items-center justify-between pr-3 md:flex">
                   <div className="flex w-fit items-center gap-1 border-t-2 border-gray-500 bg-[#333338] px-3 py-2">
                     <svg
                       viewBox="0 0 15 15"
-                    //   class="file-type-icon"
                       id="icon-file-css"
                       className="h-4 w-4"
                     >
@@ -89,7 +137,7 @@ const DynamicDiv = ({
                         fill="#282828"
                       ></path>
                     </svg>
-                    <h2 className=" text-primary-dark">CSS</h2>
+                    <h2 className="text-primary-dark">CSS</h2>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="rounded bg-[#444857] p-2">
@@ -106,18 +154,24 @@ const DynamicDiv = ({
                   theme={githubDark}
                   extensions={[[langs.css()]]}
                   onChange={onCssChange}
-                  color="#1d1e22"
                 ></CodeMirror>
               </Panel>
+              {/* Css Editor end */}
+
               <PanelResizeHandle />
-              <Panel className="bg-[#0d1117]">
-                <div className="flex items-center justify-between pr-3">
+
+              {/* Js Editor  */}
+              <Panel
+                id="subpanel3"
+                order={3}
+                className={` bg-black ${selected == "js" ? null : "hidden md:block"}`}
+              >
+                <div className="hidden items-center justify-between pr-3 md:flex">
                   <div className="flex w-fit items-center gap-1 border-t-2 border-gray-500 bg-[#333338] px-3 py-2">
                     <svg
                       viewBox="0 0 15 15"
-                    //   class="file-type-icon"
                       id="icon-file-js"
-                      className="w-4 h-4"
+                      className="h-4 w-4"
                     >
                       <rect fill="#FCD000" width="15" height="15" rx="4"></rect>
                       <path
@@ -125,7 +179,7 @@ const DynamicDiv = ({
                         fill="#282828"
                       ></path>
                     </svg>
-                    <h2 className=" text-primary-dark">HTML</h2>
+                    <h2 className="text-primary-dark">JavaScript</h2>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="rounded bg-[#444857] p-2">
@@ -144,16 +198,17 @@ const DynamicDiv = ({
                   onChange={onJsChange}
                 ></CodeMirror>
               </Panel>
+              {/* Js Editor  end*/}
+
             </PanelGroup>
           </Panel>
-          {btn ? null : <PanelResizeHandle />}
+          {btn ? null : <PanelResizeHandle className={`${layout==1&& "w-full h-4 bg-black"} ${layout==2&& "w-4 h-full bg-black"}`} />}
           {btn ? null : (
-            <Panel className="border">
+            <Panel id="panel3" order={3} className="border">
               <iframe
                 title="Result"
                 srcDoc={generateWeb()}
                 sandbox="allow-scripts"
-                
                 width="100%"
                 height="800px"
               />
