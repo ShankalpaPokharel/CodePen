@@ -69,13 +69,13 @@ export default function CodeEditorPage() {
     <div className="min-h-screen flex flex-col">
       <CodeEditorHeader />
   
-      <div className="text-green-700">
+      {/* <div className="text-green-700">
         <button onClick={() => handleButtonClick(1)}>Button 1</button>
         <button onClick={() => handleButtonClick(2)}>Button 2</button>
         <button onClick={() => handleButtonClick(3)}>Button 3</button>
-      </div>
+      </div> */}
   
-      <div className={`flex-1 `}>
+      <div className={`flex-1 border-t-[0.5px] border-gray-700`}>
           <DynamicDiv
             layout={layout}
             direction={direction}

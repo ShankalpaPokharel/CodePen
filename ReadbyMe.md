@@ -26,52 +26,62 @@ font configuration
 }
 
 ```
+
 ```jsx
 /** @type {import('tailwindcss').Config} */
-const defaultTheme = require('tailwindcss/defaultTheme')
-
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
-  theme: {
-    extend: {
-      fontFamily:{
-        'lato':["Lato", ...defaultTheme.fontFamily.sans],
-        "opensans": ["Open Sans",...defaultTheme.fontFamily.sans]
-      },
-
+    content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+    theme: {
+        extend: {
+            fontFamily: {
+                lato: ["Lato", ...defaultTheme.fontFamily.sans],
+                opensans: ["Open Sans", ...defaultTheme.fontFamily.sans],
+            },
+        },
     },
-  },
-  plugins: [],
-}
+    plugins: [],
+};
+```
+
+## How to use cookies basic
+```jsx
+const response = await axios.get('http://localhost:3000/protected',{
+  withCredentials: true // Ensure cookies are sent with the request
+});
+
+//backend
+const corsOptions = {
+  origin: 'http://localhost:5173', // Your frontend URL
+  credentials: true // Allow cookies to be sent
+};
+app.use(cors(corsOptions));
+
+const token = req.cookies.jwt;
+console.log("backend got token" , token)
+
+res.cookie('jwt', token)
+res.redirect(`http://localhost:5173/protected`)
+
 ```
 
 
 npm install react-syntax-highlighter prismjs
 
-
 we can't implement z-index in static change it in realtive
 
 apply overflow in parent div
 
-
 import { Transition } from '@headlessui/react';
 
-
-
 npm i react-resizable-panels
-
 
 npm install @uiw/react-codemirror
 npm install @uiw/codemirror-theme-github
 npm install @uiw/codemirror-extensions-langs
 
-
-
-Things to do: 
+Things to do:
 color setup
 install react router dom
 make componet normal component and common componet
