@@ -29,7 +29,7 @@ const ImageSlider = () => {
             <li key={item.id} className="my-2" onClick={() => handleListClick(item.id)}>
               <div className={` cursor-pointer px-4 py-3 rounded-md ${selectedList === item.id && 'bg-black'} `}>
               <div className='flex items-center'>
-                  <span className={`mr-2 ${selectedList === item.id ? '-rotate-90':''} `} text-base ><TiArrowSortedDown /></span>
+                  <span className={`mr-2 ${selectedList === item.id ? '-rotate-90':''} text-base`}  ><TiArrowSortedDown /></span>
                       <summary className='text-primary font-bold'>{item.name}</summary>
               </div>
                   {selectedList === item.id && (

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 
 import { FiSearch } from "react-icons/fi";
 import { FiCodepen } from "react-icons/fi";
@@ -12,12 +14,17 @@ export default function HeaderBar() {
   const [searchText, setSearchText] = useState("");
   const [navOpen, setNavOpen] = useState(false);
 
+  const location = useLocation();
+  // console.log(location.pathname)
+
   return (
     <>
       <div className="item-center border-b-1 flex h-[74px] w-full justify-between overflow-hidden border-[#25283] bg-black p-4">
         <div className="flex items-center">
           <div className="mr-2 flex h-full items-center space-x-2 text-xl text-white md:hidden">
-            <FiCodepen className="inline-block text-2xl " />
+            <Link to={""}>
+              <FiCodepen className="inline-block text-2xl " />
+            </Link>
             <div className="flex h-full -rotate-90 items-center  rounded-md bg-[#5A5F73] px-2 py-1" onClick={e=>setNavOpen(!navOpen)}>
               <RiMenuFold4Line className="inline-block" />
             </div>
@@ -45,10 +52,12 @@ export default function HeaderBar() {
         </div>
 
         <div className="ml-2 flex space-x-2">
-          <Button {...{ text: "Sign Up", className: "bg-green-bt" }} />
-          <Button
-            {...{ text: "Sign Up", className: "bg-[#252830] text-white" }}
-          />
+         <Link to={"/signup"} className={`${location.pathname=="/signup" && "hidden"}`}><Button {...{ text: "Sign Up", className: "bg-green-bt" }} /></Link>
+          <Link to={"/login"} className={`${location.pathname=="/login" && "hidden"}`}>
+            <Button
+              {...{ text: "Log in", className: "bg-[#252830] text-white" }}
+            />
+          </Link>
         </div>
       </div>
 

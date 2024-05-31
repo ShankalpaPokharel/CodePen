@@ -88,3 +88,42 @@ npm install @uiw/codemirror-extensions-langs
 npm install react-router-dom
 
 
+
+
+
+
+
+can use in future: 
+[Warn Users When Leaving a Page in React with beforeunload](https://youtu.be/K8YShjU5PBQ)
+
+
+
+
+
+
+
+
+what kind of waring this : 
+chunk-4JVUYMCH.js?v=01321cfb:521 Warning: Received `true` for a non-boolean attribute `text-base`.
+
+If you want to write it to the DOM, pass a string instead: text-base="true" or text-base={value.toString()}.
+    at span
+    at div
+    at div
+    at li
+    at ul
+    at div
+    at div
+    at ImageSlider (http://localhost:5173/src/components/ImageSlider.jsx:23:43)
+
+
+when you forget to use curly braces or quotes properly around class names.
+
+```jsx
+// problem code
+<span className={`mr-2 ${selectedList === item.id ? '-rotate-90':''} `} text-base ><TiArrowSortedDown /></span>
+// corrected version
+<span className={`mr-2 ${selectedList === item.id ? '-rotate-90' : ''} text-base`}><TiArrowSortedDown /></span>
+
+
+```jsx

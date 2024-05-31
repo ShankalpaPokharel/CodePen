@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import CodeBlock from "./CodeBlock";
 import Button from "./common/Button";
@@ -88,12 +89,14 @@ export default function LandingPageContent() {
                   website, show off your work, build test cases to learn and
                   debug, and find inspiration.
                 </p>
-                <Button
-                  text={"Sign Up For Free"}
-                  className={
-                    "hover:green-bt-h h-10 w-[134px] bg-green-bt text-black"
-                  }
-                />
+                <Link to={"/signup"}>
+                  <Button
+                    text={"Sign Up For Free"}
+                    className={
+                      "hover:green-bt-h h-10 w-[134px] bg-green-bt text-black"
+                    }
+                  />
+                </Link>
               </div>
               <img
                 src="https://cpwebassets.codepen.io/assets/packs/lines-2-4e66616a5ef291c3566a7ddfe1ffaaa8.svg"
@@ -135,10 +138,12 @@ export default function LandingPageContent() {
               to keep your work private.
             </p>
 
-            <Button
-              text="Try the Editor"
-              className="w-fit bg-[#444857] text-primary"
-            ></Button>
+            <Link to={"/pen"}>
+              <Button
+                text="Try the Editor"
+                className="w-fit bg-[#444857] text-primary"
+              ></Button>
+            </Link>
           </div>
           {/* item  */}
           <div className="my-8 rounded-xl bg-[#2C303A] px-6 pb-8 pt-6 text-primary">

@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "./Button";
+import { Link } from "react-router-dom";
 
 export default function Header({ className }) {
   return (
@@ -7,7 +8,7 @@ export default function Header({ className }) {
       className={`bg-[#1E1F26] p-5 font-medium text-primary h-full  md:sticky md:p-0 ${className} `}
     >
       <div className="overflow-hidden ">
-        <div className="hidden h-[74px] items-center px-5 md:flex">
+        <Link className="hidden h-[74px] items-center px-5 md:flex cursor-pointer" to={""} >
           <svg
             viewBox="0 0 138 26"
             fill="none"
@@ -23,15 +24,17 @@ export default function Header({ className }) {
               className="h-full w-[150px]"
             ></path>
           </svg>
-        </div>
+        </Link>
         <span className="mx-4 mb-2 flex justify-center text-center font-monos text-[11px] tracking-tighter text-primary-dark ">
           TRY OUR ONLINE EDITOR
         </span>
-        <div className="mx-4 mb-2 h-12 overflow-clip rounded-md bg-gradient-to-r  from-green-500 from-10% via-yellow-500 via-30% to-purple-500 to-90% p-1 md:h-14">
-          <Button
-            {...{ text: "Start Coading", className: "bg-black h-full" }}
-          />
-        </div>
+        <Link to={"/pen"}>
+          <div className="mx-4 mb-2 h-12 overflow-clip rounded-md bg-gradient-to-r  from-green-500 from-10% via-yellow-500 via-30% to-purple-500 to-90% p-1 md:h-14">
+            <Button
+              {...{ text: "Start Coading", className: "bg-black h-full" }}
+            />
+          </div>
+        </Link>
         <div className="py-3 text-lg hover:bg-[#09090B]">
           <span className="overflow-clip px-5">Search Pens</span>
         </div>

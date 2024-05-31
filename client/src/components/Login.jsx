@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
+
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub, FaFacebook } from "react-icons/fa";
 import Button from "./common/Button";
@@ -210,7 +213,7 @@ export default function Login() {
             </div>
 
             {/* Need a account  */}
-            <p className="mt-10 text-white text-center">Need an account? <span className=" cursor-pointer text-[#76daff]">Sign up now!</span></p>
+            <p className="mt-10 text-white text-center">Need an account? <Link to={"/signup"} className=" cursor-pointer text-[#76daff]">Sign up now!</Link></p>
 
           </div>
         </div>
