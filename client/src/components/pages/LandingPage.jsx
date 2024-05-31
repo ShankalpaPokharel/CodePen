@@ -7,6 +7,8 @@ import LandingPageContent from "../LandingPageContent";
 import Signup from "../Signup";
 import Login from "../Login";
 
+import { Outlet } from "react-router-dom";
+
 function LandingPage() {
     // const [count, setCount] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
@@ -45,7 +47,8 @@ function LandingPage() {
                     <HeaderBar />
                     {/* <LandingPageContent/>  */}
                     {/* <Signup/> */}
-                    <Login/>
+                    {/* <Login/> */}
+                    <Outlet/>
                     
                 </div>
             

@@ -67,6 +67,10 @@ res.redirect(`http://localhost:5173/protected`)
 ```
 
 
+
+
+
+
 npm install react-syntax-highlighter prismjs
 
 we can't implement z-index in static change it in realtive
@@ -81,7 +85,6 @@ npm install @uiw/react-codemirror
 npm install @uiw/codemirror-theme-github
 npm install @uiw/codemirror-extensions-langs
 
-Things to do:
-color setup
-install react router dom
-make componet normal component and common componet
+npm install react-router-dom
+
+
