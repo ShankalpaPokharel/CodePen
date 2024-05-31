@@ -86,9 +86,12 @@ npm install @uiw/codemirror-theme-github
 npm install @uiw/codemirror-extensions-langs
 
 npm install react-router-dom
+npm i axios
 
+npm install react-redux
+npm install @reduxjs/toolkit
 
-
+npm install js-cookie
 
 
 

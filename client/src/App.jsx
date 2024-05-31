@@ -1,13 +1,16 @@
 import { useState } from "react";
 
 import { createRoot } from "react-dom/client";
+
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
+
 import {
   createBrowserRouter,
   RouterProvider,
   Route,
   Link,
 } from "react-router-dom";
-
 
 import {
   LandingPageContent,
@@ -16,6 +19,7 @@ import {
   LandingPage,
   CodeEditorPage,
   PageNotFound,
+  Protected,
 } from "./components";
 
 const router = createBrowserRouter([
@@ -28,6 +32,7 @@ const router = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "/login", element: <Login /> },
       { path: "*", element: <PageNotFound /> },
+      { path: "/protected", element: <Protected/> },
     ],
   },
   {
@@ -36,12 +41,12 @@ const router = createBrowserRouter([
   },
 ]);
 
-
-
 function App() {
   return (
     <div className="font-lato ">
-      <RouterProvider router={router} />
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
     </div>
   );
 }

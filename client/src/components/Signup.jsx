@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
+import { useLocation, useNavigate } from 'react-router-dom';
+
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub, FaFacebook } from "react-icons/fa";
 import Button from "./common/Button";
 import Footer from "./common/Footer";
+
+import { apiUrl } from "../constant/variables";
 
 export default function Signup() {
   const [signUpEmail, setSignUpEmail] = useState(false);
@@ -24,6 +28,25 @@ export default function Signup() {
     // Handle form submission (e.g., send data to an API)
     console.log(formData);
   };
+
+  const handleSocialAuth = (value) =>{
+    window.location.href = `${apiUrl}/auth/${value}`;
+  }
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   const urlParams = new URLSearchParams(location.search);
+  //   const token = urlParams.get('token');
+  //   if (token) {
+  //     localStorage.setItem('jwt', token);
+  //     // setUser
+  //     navigate('/protected');
+  //   }
+  // }, [location, navigate]);
+
+
   return (
     <>
         <div className="bg-[#1b1c24] pt-4 min-h-screen">
@@ -40,19 +63,19 @@ export default function Signup() {
                 </header>
                 <div className="sm:flex">
                 <div className="p-4 text-primary">
-                  <button className="mb-[10px] flex w-full cursor-pointer items-center rounded-md bg-[#444857] px-4 py-2 text-base font-normal">
+                  <button className="mb-[10px] flex w-full cursor-pointer items-center rounded-md bg-[#444857] px-4 py-2 text-base font-normal" onClick={e => handleSocialAuth("google")}>
                     <FcGoogle className=" mr-4 inline-block text-4xl" />
                     <span className=" text-sm font-normal">
                       Sign Up With Google
                     </span>
                   </button>
-                  <button className="mb-[10px] flex w-full cursor-pointer items-center rounded-md bg-[#444857] px-4 py-2 text-base font-normal">
+                  <button className="mb-[10px] flex w-full cursor-pointer items-center rounded-md bg-[#444857] px-4 py-2 text-base font-normal" onClick={e => handleSocialAuth("github")}>
                     <FaGithub className=" mr-4 inline-block text-4xl text-white" />
                     <span className=" text-sm font-normal">
                       Sign Up With GitHub
                     </span>
                   </button>
-                  <button className="mb-[10px] flex w-full cursor-pointer items-center rounded-md bg-[#444857] px-4 py-2 text-base font-normal">
+                  <button className="mb-[10px] flex w-full cursor-pointer items-center rounded-md bg-[#444857] px-4 py-2 text-base font-normal" onClick={e => handleSocialAuth("facebook")}>
                     <FaFacebook className=" mr-4 inline-block rounded-full bg-white text-4xl text-blue-600" />
                     <span className=" text-sm font-normal">
                       Sign Up With Facebook
