@@ -66,10 +66,15 @@ res.redirect(`http://localhost:5173/protected`)
 
 ```
 
+backend
 
 
 
 
+
+
+
+Frontend
 
 npm install react-syntax-highlighter prismjs
 
