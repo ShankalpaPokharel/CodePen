@@ -11,6 +11,35 @@ import axios from "axios"
 
 import {toast} from "react-toastify" 
 
+import { useForm } from 'react-hook-form';
+import { joiResolver } from '@hookform/resolvers/joi';
+
+import Joi from 'joi';
+
+
+
+
+const schema = Joi.object({
+  name: Joi.string().pattern(/^[a-zA-Z\s]+$/).required().messages({
+    'string.pattern.base': 'Name must only contain alphabetic characters',
+    'any.required': 'Name is required'}),
+  username: Joi.string().required().messages({
+    'any.required': 'Username is required'
+  }),
+  email: Joi.string().email({ tlds: { allow: false } }).required().messages({
+    'string.email': 'Invalid email',
+    'any.required': 'Email is required'
+  }),
+  password: Joi.string().min(8).max(100).pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[.!@$!%*#?&><)(^-_])[0-9a-zA-Z.!@$!%*#?&><)(^-_]{8,100}$/).required().messages({
+    'string.base': 'Password must be a string',
+    'string.min': 'Password must be at least 8 characters',
+    'string.max': 'Password must be at most 100 characters',
+    'string.pattern.base': 'Password must contain at least one number, one uppercase letter, one lowercase letter, and one special character from .@$!%*#?&><)(^-_',
+    'any.required': 'Password is required'
+  })
+});
+
+
 
 export default function Signup() {
   const [signUpEmail, setSignUpEmail] = useState(false);
@@ -21,20 +50,60 @@ export default function Signup() {
     password: "",
   });
 
+  const [backendErrors, setBackendErrors] = useState({ email: '', username: '' });
+  const { register, handleSubmit,setError,watch, formState: { errors } } = useForm({
+    resolver: joiResolver(schema),
+  });
   const navigate= useNavigate()
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const watchEmail = watch('email');
+  const watchUsername = watch('username');
+
+    const checkExists = async (type, value) => {
+      try {
+        const response = await axios.post(`${apiUrl}/auth/${type}Exist`, { value }, { withCredentials: true });
+        if (response.data.msg) {
+          setError(type, { type: 'manual', message: `${type.charAt(0).toUpperCase() + type.slice(1)} already exists` });
+          return true;
+        }
+      } catch (error) {
+        console.error(`Error checking ${type}:`, error.message);
+        return true;
+      }
+    };
+
+
+    useEffect(() => {
+      if (watchEmail) {
+        checkExists('email', watchEmail);
+      }
+    }, [watchEmail]);
+  
+    useEffect(() => {
+      if (watchUsername) {
+        checkExists('username', watchUsername);
+      }
+    }, [watchUsername]);
+
+
+ 
+  
+
+
+
+  const onSubmit = async(data) => {
+    // e.preventDefault();
+
+    const emailExists = await checkExists('email', data.email);
+    const usernameExists = await checkExists('username', data.username);
+
+    if (emailExists || usernameExists) {
+      console.log("Email or Username already exists.");
+      return;
+    }
     
-    console.log(formData);
-    axios.post(`${apiUrl}/auth/signup`,formData,{withCredentials: true})
+    console.log("getting data",data);
+    axios.post(`${apiUrl}/auth/signup`,data,{withCredentials: true})
     .then(response=>{
       console.log(response.data)
       if (response?.data.msg == "success"){
@@ -55,7 +124,6 @@ export default function Signup() {
 
   const location = useLocation();
   
-
  
   return (
     <>
@@ -101,7 +169,7 @@ export default function Signup() {
                   </div>
                   
                   
-                  <form  onSubmit={handleSubmit} className={`${signUpEmail ? "block pt-4" : "hidden"}`}>
+                  <form  onSubmit={handleSubmit(onSubmit)} className={`${signUpEmail ? "block pt-4" : "hidden"}`}>
                     <div className="mb-4">
                       <label
                         htmlFor="name"
@@ -113,11 +181,13 @@ export default function Signup() {
                         type="text"
                         id="name"
                         name="name"
-                        value={formData.name}
-                        onChange={handleChange}
+                        // value={formData.name}
+                        // onChange={handleChange}
+                        {...register("name")}
                         className="w-full rounded-md border border-gray-300 bg-[#d5d7de] px-3 py-2 text-black focus:bg-white focus:outline-[#5a5f73] "
                         required
                       />
+                       {errors.name && <p className="text-red-500">{errors.name.message}</p>}
                     </div>
                     <div className="mb-4">
                       <label
@@ -130,12 +200,15 @@ export default function Signup() {
                         type="text"
                         id="username"
                         name="username"
-                        value={formData.username}
-                        onChange={handleChange}
+                        // value={formData.username}
+                        // onChange={handleChange}
+                        {...register("username")}
                         className="w-full rounded-md border border-gray-300 bg-[#d5d7de] px-3 py-2 text-black focus:bg-white focus:outline-[#5a5f73] "
                         required
                       />
                       <p className="text-xs text-gray-700">codepen.io/username</p>
+                      {errors.username && <p className="text-red-500">{errors.username.message}</p>}
+        {backendErrors.username && <p className="text-red-500">{backendErrors.username}</p>}
                     </div>
                     <div className="mb-4">
                       <label
@@ -148,11 +221,14 @@ export default function Signup() {
                         type="email"
                         id="email"
                         name="email"
-                        value={formData.email}
-                        onChange={handleChange}
+                        // value={formData.email}
+                        // onChange={handleChange}
+                        {...register("email")}
                         className="w-full rounded-md border border-gray-300 bg-[#d5d7de] px-3 py-2 text-black focus:bg-white focus:outline-[#5a5f73] "
                         required
                       />
+                      {errors.email && <p className="text-red-500">{errors.email.message}</p>}
+        {backendErrors.email && <p className="text-red-500">{backendErrors.email}</p>}
                     </div>
                     <div className="mb-4">
                       <label
@@ -165,11 +241,13 @@ export default function Signup() {
                         type="password"
                         id="password"
                         name="password"
-                        value={formData.password}
-                        onChange={handleChange}
+                        // value={formData.password}
+                        // onChange={handleChange}
+                        {...register("password")}
                         className="w-full rounded-md border border-gray-300 bg-[#d5d7de] px-3 py-2 text-black focus:bg-white focus:outline-[#5a5f73] "
                         required
                       />
+                       {errors.password && <p className="text-red-500">{errors.password.message}</p>}
                     </div>
                     <div className="">
                       <h2 className="mb-1 text-sm text-gray-700">
@@ -192,6 +270,7 @@ export default function Signup() {
                       />
                     </button>
                   </form>
+                  
                   <p className="mt-2 text-sm text-gray-700">
                     By signing up, you agree to CodePen's{" "}
                     <span className="text-[#30a9f4]">Terms of Service</span> ,{" "}

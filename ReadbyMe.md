@@ -101,7 +101,11 @@ npm install js-cookie
 
 npm i react-toastify
 
+npm install react-hook-form
 
+npm i @hookform/resolvers
+
+npm i joi
 
 
 can use in future: 
@@ -145,4 +149,3 @@ in app.jsx i save the user in redux , but immidetily send the router provide and
 
  ```{isLoading ? <div>Loading......</div> :  <RouterProvider router={router} />}```
 
- 

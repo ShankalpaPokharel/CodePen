@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+import { toast } from "react-toastify";
+
 import { setReduxUser } from "../redux/slice/userSlice";
 import { useDispatch } from "react-redux";
 
@@ -15,15 +17,14 @@ import { apiUrl } from "../constant/variables";
 
 export default function Login() {
   const [socialLog, setSocialLog] = useState(false);
-  const [forgetClicked, setForgetClicked] = useState(false)
+  const [forgetClicked, setForgetClicked] = useState(false);
+  const [formErrors, setFormErrors] = useState({name:null,password:null})
 
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // console.log("forgetClicked",forgetClicked)
   const [formData, setFormData] = useState({
-    name: "",
-    username: "",
     email: "",
     password: "",
   });
@@ -35,27 +36,54 @@ export default function Login() {
     });
   };
   const handleSubmit = (e) => {
+    
     e.preventDefault();
-    axios.post(`${apiUrl}/auth/login`,formData,{withCredentials: true})
-    .then(response=>{
-      console.log(response.status)
-      console.log(response)
-      console.log(response.data)
-      if (response.status == 200){
-        dispatch(setReduxUser(response.data.user))
-        navigate("/protected")
-      }
-    })
-    .catch(error=>{
-      console.log("axios catch error",error)
-      console.log(error.response?.data)
-    })
+    if (!formData.email) {
+      setFormErrors((prevFormErrors) => ({
+        ...prevFormErrors,
+        email: "Email or Username is required",
+      }));
+      return;
+    } else {
+      setFormErrors((prevFormErrors) => ({ ...prevFormErrors, email: "" }));
+    }
+
+    if (!formData.password) {
+      setFormErrors((prevFormErrors) => ({
+        ...prevFormErrors,
+        password: "Password is required",
+      }));
+      return;
+    } else {
+      setFormErrors((prevFormErrors) => ({ ...prevFormErrors, password: "" }));
+    }
+    axios
+      .post(`${apiUrl}/auth/login`, formData, { withCredentials: true })
+      .then((response) => {
+        console.log(response.status);
+        console.log(response);
+        console.log(response.data);
+        if (response.status == 200) {
+          dispatch(setReduxUser(response.data.user));
+          navigate("/protected");
+        }
+      })
+      .catch((error) => {
+        console.log("axios catch error", error);
+        console.log(error.response?.data);
+        toast.error(error.response?.data.msg);
+      });
     console.log(formData);
   };
+
+  const handleSocialAuth = (value) => {
+    window.location.href = `${apiUrl}/auth/${value}`;
+  };
+
   return (
     <>
-      <div className="min-h-screen bg-[#1b1c24] flex flex-col justify-between">
-        <div className="p-4 mb">
+      <div className="flex min-h-screen flex-col justify-between bg-[#1b1c24]">
+        <div className="mb p-4">
           <div className="relative mx-auto flex max-w-[800px] flex-col flex-wrap p-5">
             <header className="mb-5 mt-3">
               <div className="h-[24px] w-[150px] md:flex">
@@ -81,22 +109,21 @@ export default function Login() {
 
             <div className="sm:flex sm:w-full">
               <div className=" mt-5 text-primary sm:flex sm:w-full">
-
-                <div className="min-w-[40%]" >
+                <div className="min-w-[40%]">
                   {/* auth social button */}
-                  <button className="mb-[10px] flex w-full cursor-pointer items-center rounded-md bg-[#444857] px-4 py-2 text-base font-normal">
+                  <button className="mb-[10px] flex w-full cursor-pointer items-center rounded-md bg-[#444857] px-4 py-2 text-base font-normal" onClick={e => handleSocialAuth("google")}>
                     <FcGoogle className=" mr-4 inline-block text-4xl" />
                     <span className=" text-sm font-normal">
                       Sign Up With Google
                     </span>
                   </button>
-                  <button className="mb-[10px] flex w-full cursor-pointer items-center rounded-md bg-[#444857] px-4 py-2 text-base font-normal">
+                  <button className="mb-[10px] flex w-full cursor-pointer items-center rounded-md bg-[#444857] px-4 py-2 text-base font-normal" onClick={e => handleSocialAuth("github")}>
                     <FaGithub className=" mr-4 inline-block text-4xl text-white" />
                     <span className=" text-sm font-normal">
                       Sign Up With GitHub
                     </span>
                   </button>
-                  <button className="mb-[10px] flex w-full cursor-pointer items-center rounded-md bg-[#444857] px-4 py-2 text-base font-normal">
+                  <button className="mb-[10px] flex w-full cursor-pointer items-center rounded-md bg-[#444857] px-4 py-2 text-base font-normal" onClick={e => handleSocialAuth("facebook")}>
                     <FaFacebook className=" mr-4 inline-block rounded-full bg-white text-4xl text-blue-600" />
                     <span className=" text-sm font-normal">
                       Sign Up With Facebook
@@ -124,16 +151,13 @@ export default function Login() {
                       className={`${socialLog ? "px-6 pt-1 text-xs" : "hidden"}`}
                     >
                       If the email address associated with your social account
-                      matches the email address of your CodePen account, you'll be
-                      logged in. You aren't locked to any particular social
+                      matches the email address of your CodePen account, you'll
+                      be logged in. You aren't locked to any particular social
                       account. Questions? contact support.
                     </p>
                   </div>
                   {/* How social login works end */}
                 </div>
-
-
-                
 
                 {/* OR bar  */}
                 <div className="mt-3 flex items-center sm:hidden">
@@ -144,8 +168,7 @@ export default function Login() {
                   <div className="h-[2px] w-[41%] bg-primary-dark"></div>
                 </div>
 
-
-                <div className="mt-3 sm:flex flex-col items-center h-full hidden mx-5">
+                <div className="mx-5 mt-3 hidden h-full flex-col items-center sm:flex">
                   <div className="h-[40%] w-[2px] bg-primary-dark"></div>
                   <div className="flex h-[20%] w-12 items-center justify-center rounded-xl border border-primary-dark bg-transparent text-primary-dark">
                     OR
@@ -153,9 +176,6 @@ export default function Login() {
                   <div className="h-[40%] w-[2px] bg-primary-dark"></div>
                 </div>
                 {/* OR bar end */}
-
-
-
 
                 <div className="min-w-[50%]">
                   {/* Login Form */}
@@ -168,7 +188,7 @@ export default function Login() {
                         Username or Email
                       </label>
                       <input
-                        type="email"
+                        type="text"
                         id="email"
                         name="email"
                         value={formData.email}
@@ -176,6 +196,7 @@ export default function Login() {
                         className="w-full rounded-md border border-gray-300 bg-[#d5d7de] px-3 py-2 text-black focus:bg-white focus:outline-[#5a5f73] "
                         required
                       />
+                      {formErrors.email && <p className="text-red-500">{formErrors.email}</p>}
                     </div>
                     <div className="mb-4">
                       <label
@@ -193,20 +214,28 @@ export default function Login() {
                         className="w-full rounded-md border border-gray-300 bg-[#d5d7de] px-3 py-2 text-black focus:bg-white focus:outline-[#5a5f73] "
                         required
                       />
+                       {formErrors.password && <p className="text-red-500">{formErrors.password}</p>}
                     </div>
-                    <button>
+                    <button className="w-full">
                       <Button
                         text="Login"
-                        className="mt-7  bg-[#47cf73] px-11 py-3 !text-2xl"
+                        className="mt-7 w-full bg-[#47cf73] px-11 py-3 text-black"
                       />
                     </button>
                   </form>
-                   {/* Login Form end*/}
+                  {/* Login Form end*/}
                   {/* Forget Password  */}
-                  <p className="text-center text-[#76daff] hover:text-white mt-6" onClick={e=>setForgetClicked(!forgetClicked)}>Forget Password?</p>
-                  <div className={`p-5 mt-5 text-primary bg-[#2c303a] rounded-md  ${forgetClicked ? "block":"hidden"}`}>
-                    <p className="font-medium text-lg">Reset Your Password</p>
-                  
+                  <p
+                    className="mt-6 text-center text-[#76daff] hover:text-white"
+                    onClick={(e) => setForgetClicked(!forgetClicked)}
+                  >
+                    Forget Password?
+                  </p>
+                  <div
+                    className={`mt-5 rounded-md bg-[#2c303a] p-5 text-primary  ${forgetClicked ? "block" : "hidden"}`}
+                  >
+                    <p className="text-lg font-medium">Reset Your Password</p>
+
                     <div className="my-4 ">
                       <form action="">
                         <label
@@ -216,31 +245,37 @@ export default function Login() {
                           Email
                         </label>
                         <input
-                          type="email"
+                          type="text"
                           id="femail"
                           name="femail"
                           // value={formData.email}
                           // onChange={handleChange}
                           placeholder="your@email.com"
-                          className="w-full rounded-md border border-gray-300 bg-[#d5d7de] px-3 py-2 text-black focus:bg-white focus:outline-[#5a5f73] outline-none "
+                          className="w-full rounded-md border border-gray-300 bg-[#d5d7de] px-3 py-2 text-black outline-none focus:bg-white focus:outline-[#5a5f73] "
                           required
                         />
-                        <Button text="Send Password Reset Email" className="my-5 bg-[#444857]"/>
+                        <Button
+                          text="Send Password Reset Email"
+                          className="my-5 bg-[#444857]"
+                        />
                       </form>
                     </div>
                   </div>
-                   {/* Forget Password end  */}
+                  {/* Forget Password end  */}
                 </div>
-
               </div>
             </div>
 
             {/* Need a account  */}
-            <p className="mt-10 text-white text-center">Need an account? <Link to={"/signup"} className=" cursor-pointer text-[#76daff]">Sign up now!</Link></p>
-
+            <p className="mt-10 text-center text-white">
+              Need an account?{" "}
+              <Link to={"/signup"} className=" cursor-pointer text-[#76daff]">
+                Sign up now!
+              </Link>
+            </p>
           </div>
         </div>
-        <section className="w-full bg-black mt-auto">
+        <section className="mt-auto w-full bg-black">
           <Footer />
         </section>
       </div>

@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const passport = require("passport");
 
 exports.signup = async (req, res) => {
+    console.log("signup hit")
     const { name, email, password, username } = req.body;
     // console.log(name, email, password,username)
     try {
@@ -24,7 +25,7 @@ exports.login = async (req, res) => {
     console.log("email,password",email,password)
     try {
         const user = await User.findOne({ email });
-        if (!user) return res.status(400).json({ msg: "User does not exist" });
+        if (!user) return res.status(400).json({ msg: "Inavalid Credentials" });
 
         const isMatch  = await user.isPasswordCorrect(password)
 
@@ -111,3 +112,32 @@ exports.success = (req, res) => {
     res.send(req.query.token);
 };
 
+exports.usernameExist = async(req,res)=>{
+    console.log("enter in username exist" , req.body.value)
+    const username = req.body.value
+    console.log("recieving username:",username)
+    try {
+        const user = await User.findOne({username})
+        if (user){
+            return res.json({msg:true})
+        }
+        return res.json({msg:false})   
+    } catch (error) {
+        return res.json({error:error})
+    }
+    
+}
+exports.emailExist = async(req,res)=>{
+    const email = req.body.value
+    console.log("email exist ",email)
+    try {
+        const user = await User.findOne({email})
+        if (user){
+            return res.json({msg:true})
+        }
+        return res.json({msg:false}) 
+    } catch (error) {
+        return res.json({error:error})
+    }
+    
+}
