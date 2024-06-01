@@ -67,6 +67,7 @@ res.redirect(`http://localhost:5173/protected`)
 ```
 
 backend
+npm install express bcrypt cors dotenv passport passport-google-oauth20 passport-facebook passport-github mongoose cookie-parser express-session jsonwebtoken
 
 
 
@@ -97,6 +98,8 @@ npm install react-redux
 npm install @reduxjs/toolkit
 
 npm install js-cookie
+
+npm i react-toastify
 
 
 
@@ -135,3 +138,11 @@ when you forget to use curly braces or quotes properly around class names.
 
 
 ```jsx
+
+
+one problem took my morning 
+in app.jsx i save the user in redux , but immidetily send the router provide and try to access the set user value from protected route(there was login in there is no user redirect in to the landing page, tried to debug and when do console show the user when colsole but when add in useeffet didn't show cause, backend response take time but i immediately render the component )
+
+ ```{isLoading ? <div>Loading......</div> :  <RouterProvider router={router} />}```
+
+ 

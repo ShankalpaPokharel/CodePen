@@ -7,6 +7,10 @@ import Button from "./common/Button";
 import Footer from "./common/Footer";
 
 import { apiUrl } from "../constant/variables";
+import axios from "axios"
+
+import {toast} from "react-toastify" 
+
 
 export default function Signup() {
   const [signUpEmail, setSignUpEmail] = useState(false);
@@ -16,6 +20,9 @@ export default function Signup() {
     email: "",
     password: "",
   });
+
+  const navigate= useNavigate()
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -25,8 +32,21 @@ export default function Signup() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission (e.g., send data to an API)
+    
     console.log(formData);
+    axios.post(`${apiUrl}/auth/signup`,formData,{withCredentials: true})
+    .then(response=>{
+      console.log(response.data)
+      if (response?.data.msg == "success"){
+        toast.success("Successfully account created. Now you can login. ")
+        navigate("/login")
+      } 
+
+    })
+    .catch(error=>{
+      console.log(error)
+      console.log(error.response?.data)
+    })
   };
 
   const handleSocialAuth = (value) =>{
@@ -34,19 +54,9 @@ export default function Signup() {
   }
 
   const location = useLocation();
-  const navigate = useNavigate();
+  
 
-  // useEffect(() => {
-  //   const urlParams = new URLSearchParams(location.search);
-  //   const token = urlParams.get('token');
-  //   if (token) {
-  //     localStorage.setItem('jwt', token);
-  //     // setUser
-  //     navigate('/protected');
-  //   }
-  // }, [location, navigate]);
-
-
+ 
   return (
     <>
         <div className="bg-[#1b1c24] pt-4 min-h-screen">
@@ -89,7 +99,9 @@ export default function Signup() {
                       onClick={(e) => setSignUpEmail(!signUpEmail)}
                     />
                   </div>
-                  <form className={`${signUpEmail ? "block pt-4" : "hidden"}`}>
+                  
+                  
+                  <form  onSubmit={handleSubmit} className={`${signUpEmail ? "block pt-4" : "hidden"}`}>
                     <div className="mb-4">
                       <label
                         htmlFor="name"
@@ -173,10 +185,12 @@ export default function Signup() {
                         <li>Be between 8 and 100 characters</li>
                       </ul>
                     </div>
-                    <Button
-                      text="Submit"
-                      className="mt-4 w-fit bg-[#47cf73] px-11 py-3 !text-2xl"
-                    />
+                    <button>
+                      <Button
+                        text="Submit"
+                        className="mt-4 w-fit bg-[#47cf73] px-11 py-3 !text-2xl"
+                      />
+                    </button>
                   </form>
                   <p className="mt-2 text-sm text-gray-700">
                     By signing up, you agree to CodePen's{" "}

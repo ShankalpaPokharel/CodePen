@@ -22,6 +22,8 @@ passport.use(new GoogleStrategy({
         username:profile.displayName.replace(/\s+/g, '_')+getRandomNumber()
       });
       await user.save();
+
+      user.password=null
     }
    
     return done(null, user);

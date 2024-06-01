@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
 import CodeBlock from "./CodeBlock";
 import Button from "./common/Button";
@@ -10,6 +12,16 @@ import ImageSlider from "./ImageSlider";
 import Footer from "./common/Footer";
 
 export default function LandingPageContent() {
+
+  const user = useSelector((state) => state.user.value);
+  const navigate= useNavigate()
+
+  useEffect(() => {
+   if (user) navigate("/protected")
+  }, [])
+  
+
+
   const htmlCode = `<div class="rect"></div>`;
   const cssCode = `.rect {
         background: linear-gradient(

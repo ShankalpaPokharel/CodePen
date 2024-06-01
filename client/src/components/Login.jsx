@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
+import { setReduxUser } from "../redux/slice/userSlice";
+import { useDispatch } from "react-redux";
 
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub, FaFacebook } from "react-icons/fa";
@@ -8,11 +10,17 @@ import Button from "./common/Button";
 import Footer from "./common/Footer";
 
 import { TiArrowSortedDown } from "react-icons/ti";
+import axios from "axios";
+import { apiUrl } from "../constant/variables";
 
 export default function Login() {
   const [socialLog, setSocialLog] = useState(false);
   const [forgetClicked, setForgetClicked] = useState(false)
-  console.log("forgetClicked",forgetClicked)
+
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  // console.log("forgetClicked",forgetClicked)
   const [formData, setFormData] = useState({
     name: "",
     username: "",
@@ -28,7 +36,20 @@ export default function Login() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission (e.g., send data to an API)
+    axios.post(`${apiUrl}/auth/login`,formData,{withCredentials: true})
+    .then(response=>{
+      console.log(response.status)
+      console.log(response)
+      console.log(response.data)
+      if (response.status == 200){
+        dispatch(setReduxUser(response.data.user))
+        navigate("/protected")
+      }
+    })
+    .catch(error=>{
+      console.log("axios catch error",error)
+      console.log(error.response?.data)
+    })
     console.log(formData);
   };
   return (
@@ -138,7 +159,7 @@ export default function Login() {
 
                 <div className="min-w-[50%]">
                   {/* Login Form */}
-                  <form className="mt-6">
+                  <form onSubmit={handleSubmit} className="mt-6">
                     <div className="mb-4">
                       <label
                         htmlFor="email"
@@ -173,10 +194,12 @@ export default function Login() {
                         required
                       />
                     </div>
-                    <Button
-                      text="Login"
-                      className="mt-7  bg-[#47cf73] px-11 py-3 !text-2xl"
-                    />
+                    <button>
+                      <Button
+                        text="Login"
+                        className="mt-7  bg-[#47cf73] px-11 py-3 !text-2xl"
+                      />
+                    </button>
                   </form>
                    {/* Login Form end*/}
                   {/* Forget Password  */}
