@@ -36,7 +36,7 @@ exports.saveProject = async (req, res) => {
             //             error: "Project not found or user not authorized",
             //         });
             // }
-            res.status(200).json({new:false},"Pen Saved")
+            res.status(200).json({new:false,msg:"Code Saved!"})
 
         } else {
             // Create new project
@@ -75,3 +75,15 @@ exports.getProjectById = async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 };
+
+exports.getPinProjects = async(req,res)=>{
+    try{
+        const userId = req.user.id
+        const pinProjects = await Project.find({createdBy:userId}).populate('createdBy', 'username');
+        res.json({status:200,pinProjects})
+    }
+    catch(error){
+        console.error('Error fetching project:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+}

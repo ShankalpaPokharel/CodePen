@@ -132,9 +132,12 @@ export default function CodeEditorPage() {
         const res = response.data
         navigate(`/${res.username}/pen/${res.projectId}`);
       }
+      if(!response.data.new){
+        toast.success(response.data?.msg)
+      }
     })
     .catch((error)=>{
-      console.log("error..")
+      console.log("error..",error)
     })
     
    

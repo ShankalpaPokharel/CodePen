@@ -17,7 +17,7 @@ export default function LandingPageContent() {
   const navigate= useNavigate()
 
   useEffect(() => {
-   if (user) navigate("/protected")
+   if (user) navigate("/your-work")
   }, [])
   
 

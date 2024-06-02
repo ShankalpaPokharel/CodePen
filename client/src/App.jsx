@@ -25,7 +25,7 @@ import {
   LandingPage,
   CodeEditorPage,
   PageNotFound,
-  Protected,
+  YourWork,
 } from "./components";
 import { apiUrl } from "./constant/variables";
 
@@ -39,7 +39,7 @@ const router = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "/login", element: <Login /> },
       { path: "*", element: <PageNotFound /> },
-      { path: "/protected", element: <Protected/> },
+      { path: "/your-work", element: <YourWork/> },
       
     ],
   },

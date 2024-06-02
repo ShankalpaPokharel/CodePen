@@ -74,7 +74,7 @@ export default function Login() {
         console.log(response.data);
         if (response.status == 200) {
           dispatch(setReduxUser(response.data.user));
-          navigate("/protected");
+          navigate("/your-work");
         }
       })
       .catch((error) => {

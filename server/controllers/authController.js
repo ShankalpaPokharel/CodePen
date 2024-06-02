@@ -106,7 +106,7 @@ exports.googleAuthCallback = (req, res, next) => {
             );
 
             res.cookie("jwt", token);
-            res.redirect("http://localhost:5173/protected");
+            res.redirect("http://localhost:5173/your-work");
         }
     )(req, res, next);
 };

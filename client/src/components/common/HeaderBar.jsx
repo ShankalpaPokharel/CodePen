@@ -1,20 +1,26 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../../redux/slice/userSlice";
 
 import { FiSearch } from "react-icons/fi";
 import { FiCodepen } from "react-icons/fi";
 import { RiMenuFold4Line } from "react-icons/ri";
+import { MdLogout } from "react-icons/md";
+import { IoMdSettings } from "react-icons/io";
 
 import Button from "./Button";
 import Header from "./Header";
 import { RxCross2 } from "react-icons/rx";
+// import { Link } from "react-router-dom";
 
 export default function HeaderBar() {
   const [searchText, setSearchText] = useState("");
   const [navOpen, setNavOpen] = useState(false);
+  const [openProfileMenu, setOpenProfileMenu] = useState(false)
   const user = useSelector((state) => state.user.value);
+  const dispatch = useDispatch();
 
   const location = useLocation();
   // console.log(location.pathname)
@@ -24,10 +30,10 @@ export default function HeaderBar() {
       <div className="item-center border-b-1 flex h-[74px] w-full justify-between overflow-hidden border-[#25283] bg-black p-4">
         
         {user && 
-        <div className="text-white font-opensans flex rounded-sm overflow-hidden gap-[1px]">
-          <button className="px-[22px] py-2 bg-[#444857] border-b-2   border-green-600 text-base">Your Work</button>
-          <button className="px-[22px] py-2 bg-[#252830] border-b-2 border-[#252830] hover:border-gray-400 text-base">Following</button>
-          <button className="px-[22px] py-2 bg-[#252830] border-b-2 border-[#252830] hover:border-gray-400  text-base">Trending</button>
+        <div className="text-white text-xs lg:text-base font-opensans hidden md:flex rounded-sm overflow-hidden gap-[1px]">
+          <Link to="/your-work"  className="px-[22px] py-2 bg-[#444857] border-b-2   border-green-600 ">Your Work</Link>
+          <button className="px-[22px] py-2 bg-[#252830] border-b-2 border-[#252830] hover:border-gray-400 ">Following</button>
+          <button className="px-[22px] py-2 bg-[#252830] border-b-2 border-[#252830] hover:border-gray-400  ">Trending</button>
         </div>}
         
         <div className="flex items-center">
@@ -75,7 +81,7 @@ export default function HeaderBar() {
               </svg>
             </div>
                     </button>
-            <div className="h-[42px]">
+            <div onClick={e=>setOpenProfileMenu(!openProfileMenu)} className=" cursor-pointer h-[42px]">
               <img className="h-full rounded-md" src={user.photoUrl} alt="" />
             </div>
           </div>
@@ -103,10 +109,42 @@ export default function HeaderBar() {
       </div>
 
       {navOpen ? (
-        <div className="absolute left-0 top-[74px] z-10 w-full max-w-[234px] shadow-2xl md:hidden">
+        <div className="absolute left-0 top-[70px] z-10 w-full max-w-[234px] shadow-2xl md:hidden">
           <Header />
         </div>
       ) : null}
+
+{user && openProfileMenu ?
+ <div className="divide-y divide-gray-500 absolute top-[70px] right-2 mr-2 rounded text-white bg-[#1e1f26] z-10 shadow-2xl max-w-[156px] w-full text-xs font-bold">
+  <div className="p-2">
+    <p className="mb-2">Your Work</p>
+    <p>Profile</p>
+  </div>
+ 
+  <div className="p-2">
+    <p className="mb-2">New Pen</p>
+    <p>New Collection</p>
+  </div>
+ 
+  <div className="p-2">
+    <p className="mb-2">Asset Manager</p>
+    <p className="mb-2">Embed Theme Builder</p>
+    <p>Upgrade to Pro</p>
+  </div>
+  <div className="p-2">
+    <p className="mb-2">Documenatation</p>
+    <p>Support</p>
+  </div>
+ 
+  <div className="p-2">
+    <p className="mb-2 flex items-center"><IoMdSettings className="inline-block mr-1"/>Settings</p>
+    <p onClick={() => dispatch(logout())} className="flex cursor-pointer items-center"><MdLogout className="inline-block mr-1"/>Logout</p>
+  </div>
+ </div> 
+ 
+ : null}
+
+
     </>
   );
 }

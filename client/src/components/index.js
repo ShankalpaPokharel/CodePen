@@ -4,7 +4,7 @@ import LandingPageContent from "./LandingPageContent";
 import CodeEditorPage from "./pages/CodeEditorPage";
 import LandingPage from "./pages/LandingPage";
 import PageNotFound from "./PageNotFound";
-import Protected from "./Protected";
+import YourWork from "./YourWork";
 
 
-export {Signup,Login,LandingPageContent,CodeEditorPage,LandingPage,PageNotFound,Protected}
+export {Signup,Login,LandingPageContent,CodeEditorPage,LandingPage,PageNotFound,YourWork}
