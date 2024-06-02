@@ -19,14 +19,15 @@ const ImageSlider = () => {
 
   const handleListClick = (listNumber) => {
     setSelectedList(listNumber);
+    console.log("list number",listNumber)
   };
 
   return (
-    <div className="lg:grid lg:grid-cols-3 lg:gap-8">
+    <div className="lg:grid lg:grid-cols-3 lg:gap-8 relative z-50">
       <div className="flex-1">
         <ul>
           {listItems.map(item => (
-            <li key={item.id} className="my-2" onClick={() => handleListClick(item.id)}>
+            <li key={item.id} className="my-2" onClick={(e) => handleListClick(item.id)}>
               <div className={` cursor-pointer px-4 py-3 rounded-md ${selectedList === item.id && 'bg-black'} `}>
               <div className='flex items-center'>
                   <span className={`mr-2 ${selectedList === item.id ? '-rotate-90':''} text-base`}  ><TiArrowSortedDown /></span>

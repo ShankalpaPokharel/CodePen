@@ -477,7 +477,7 @@ export default function LandingPageContent() {
       </div>
 
       {/* Feature Presentation */}
-      <section className="bg-[#18191e] pt-12 text-primary">
+      <section className="relative bg-[#18191e] pt-12 text-primary ">
         <div className="mb-12 text-center">
           <h2 className=" mb-[10px] font-opensans text-3xl font-normal">
             A front-end environment made for testing and sharing
@@ -485,7 +485,7 @@ export default function LandingPageContent() {
           <p className="text-[#76daff]">Explore the Editor</p>
         </div>
 
-        <div className="container px-8">
+        <div className="container  px-8">
           <ImageSlider />
         </div>
       </section>
@@ -493,7 +493,7 @@ export default function LandingPageContent() {
       {/* Get Started Quicker  */}
       <section className="bg relative   bg-[#131417] py-20">
         <div className="container relative px-[10px]">
-          <div className="relative z-10 grid grid-cols-3 gap-4 px-[10px] xl:grid-cols-6">
+          <div className="relative z-20 grid grid-cols-3 gap-4 px-[10px] xl:grid-cols-6">
             <div className="col-start-3 col-end-4 row-start-1 row-end-2 flex flex-col xl:col-start-6 xl:col-end-6">
               <h2 className=" mb-2 font-opensans text-2xl font-normal text-primary">
                 Get Started Quicker
@@ -610,7 +610,7 @@ export default function LandingPageContent() {
           <img
             src="https://cpwebassets.codepen.io/assets/packs/lines-3-4541e35a1939230404d773f7eeddcc9b.svg"
             alt=""
-            className="absolute bottom-[-70px] left-[-100px] w-[900px]"
+            className="absolute bottom-[-70px] left-[-100px] w-[900px] "
           />
         </div>
       </section>

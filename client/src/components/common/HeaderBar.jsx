@@ -23,6 +23,7 @@ export default function HeaderBar() {
   const dispatch = useDispatch();
 
   const location = useLocation();
+  
   // console.log(location.pathname)
 
   return (
@@ -118,7 +119,7 @@ export default function HeaderBar() {
  <div className="divide-y divide-gray-500 absolute top-[70px] right-2 mr-2 rounded text-white bg-[#1e1f26] z-10 shadow-2xl max-w-[156px] w-full text-xs font-bold">
   <div className="p-2">
     <p className="mb-2">Your Work</p>
-    <p>Profile</p>
+    <Link to={`${user.username}`}>Profile</Link>
   </div>
  
   <div className="p-2">
