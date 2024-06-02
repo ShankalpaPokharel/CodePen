@@ -19,6 +19,7 @@ export const userSlice = createSlice({
             // localStorage.removeItem("access_token")
             Cookies.remove('jwt');
             console.log('JWT token removed');
+
         }
 
     }

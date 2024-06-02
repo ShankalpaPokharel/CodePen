@@ -81,11 +81,7 @@ export default function CodeEditorPage() {
       `;
   };
 
-  useEffect(() => {
-    if (projectId) {
-      fetchProjectData(projectId);
-    }
-  }, [projectId]);
+ 
 
   const fetchProjectData = async (projectId) => {
     try {
@@ -98,6 +94,7 @@ export default function CodeEditorPage() {
         setCssCode(projectData.code.css);
         setJsCode(projectData.code.js);
         if(user){
+          // console.log("hi........",user.id,projectData.createdBy._id)
           if (user.id !== projectData.createdBy._id){
             setSaveButton(false)
           }
@@ -110,6 +107,11 @@ export default function CodeEditorPage() {
     }
   };
 
+  useEffect(() => {
+    if (projectId) {
+      fetchProjectData(projectId);
+    }
+  }, [projectId]);
 
   const handleSave = () =>{
     console.log(apiUrl)

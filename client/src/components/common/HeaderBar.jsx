@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../redux/slice/userSlice";
@@ -21,8 +21,13 @@ export default function HeaderBar() {
   const [openProfileMenu, setOpenProfileMenu] = useState(false)
   const user = useSelector((state) => state.user.value);
   const dispatch = useDispatch();
-
+  const navigate= useNavigate()
   const location = useLocation();
+
+  const handleLogout = ()=>{
+    dispatch(logout())
+    navigate("")
+  }
   
   // console.log(location.pathname)
 
@@ -139,7 +144,7 @@ export default function HeaderBar() {
  
   <div className="p-2">
     <p className="mb-2 flex items-center"><IoMdSettings className="inline-block mr-1"/>Settings</p>
-    <p onClick={() => dispatch(logout())} className="flex cursor-pointer items-center"><MdLogout className="inline-block mr-1"/>Logout</p>
+    <p onClick={() => handleLogout()} className="flex cursor-pointer items-center"><MdLogout className="inline-block mr-1"/>Logout</p>
   </div>
  </div> 
  
