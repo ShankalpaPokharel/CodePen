@@ -1,6 +1,12 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import CodeEditorHeader from "../CodeEditorHeader";
-import DynamicDiv from "../DynamicDiv"
+import DynamicDiv from "../DynamicDiv";
+import { useSelector } from "react-redux";
+import {toast} from "react-toastify"
+import axios from "axios"
+import { useNavigate , useParams} from "react-router-dom";
+
+import {apiUrl} from "../../constant/variables"
 
 export default function CodeEditorPage() {
   const [activeDiv, setActiveDiv] = useState(1);
@@ -9,11 +15,22 @@ export default function CodeEditorPage() {
   const [htmlCode, setHtmlCode] = useState("<div>Hello, world!</div>");
   const [cssCode, setCssCode] = useState("body { background-color: #f0f0f0; }");
   const [jsCode, setJsCode] = useState('console.log("Hello, world!");');
-  const [layout, setLayout] = useState(1)
+  const [layout, setLayout] = useState(1);
+  const [projectName, setProjectName] = useState("Untitled");
+  const [saveButton,setSaveButton] = useState(true)
+  
+  const { username, projectId } = useParams();
+  console.log("username, projectId",username, projectId)
+
+  const navigate= useNavigate()
+
+  const user = useSelector(state=>state.user.value)
+
+  // 
 
   const handleScreenSizeChange = () => {
     if (window.innerWidth <= 768) {
-        setDirection("vertical");
+      setDirection("vertical");
       setBtn(false);
       setLayout(1);
     }
@@ -31,8 +48,7 @@ export default function CodeEditorPage() {
       window.removeEventListener("resize", handleScreenSizeChange);
     };
   }, []);
-  console.log((layout))
-
+  // console.log(layout);
 
   const handleButtonClick = (divNumber) => {
     setActiveDiv(divNumber);
@@ -65,32 +81,98 @@ export default function CodeEditorPage() {
       `;
   };
 
+  useEffect(() => {
+    if (projectId) {
+      fetchProjectData(projectId);
+    }
+  }, [projectId]);
+
+  const fetchProjectData = async (projectId) => {
+    try {
+      const response = await axios.get(`${apiUrl}/api/user/getProject/${projectId}`, { withCredentials: true });
+      if (response.status === 200) {
+        console.log("fetch project response data",response.data)
+        const projectData = response.data;
+        setProjectName(projectData.name);
+        setHtmlCode(projectData.code.html);
+        setCssCode(projectData.code.css);
+        setJsCode(projectData.code.js);
+        if(user){
+          if (user.id !== projectData.createdBy._id){
+            setSaveButton(false)
+          }
+        }
+       
+      }
+      
+    } catch (error) {
+      console.error('Error fetching project:', error);
+    }
+  };
+
+
+  const handleSave = () =>{
+    console.log(apiUrl)
+    console.log("project id",projectId)
+    console.log("handle save user",user)
+    if (!user){
+      toast.warn("Please Login to Save")
+      return
+    }
+    if(!projectName){
+      toast.error("Please save the project name")
+      return
+    }
+    axios.post(`${apiUrl}/api/user/save`,{projectId,projectName,htmlCode,cssCode,jsCode},{withCredentials: true})
+    .then((response)=>{
+      
+      console.log("response....")
+      console.log(response.data)
+      if(response.data?.new){
+        const res = response.data
+        navigate(`/${res.username}/pen/${res.projectId}`);
+      }
+    })
+    .catch((error)=>{
+      console.log("error..")
+    })
+    
+   
+  }
+
   return (
-    <div className="min-h-screen flex flex-col">
-      <CodeEditorHeader />
-  
+    <div className="flex min-h-screen flex-col">
+      <CodeEditorHeader
+        projectName={projectName}
+        setProjectName={setProjectName}
+        onSave={handleSave}
+        saveButton = {saveButton}
+      />
+
       {/* <div className="text-green-700">
         <button onClick={() => handleButtonClick(1)}>Button 1</button>
         <button onClick={() => handleButtonClick(2)}>Button 2</button>
         <button onClick={() => handleButtonClick(3)}>Button 3</button>
       </div> */}
-  
+
       <div className={`flex-1 border-t-[0.5px] border-gray-700`}>
-          <DynamicDiv
-            layout={layout}
-            direction={direction}
-            btn={btn}
-            htmlCode={htmlCode}
-            cssCode={cssCode}
-            jsCode={jsCode}
-            onHtmlChange={(val) => setHtmlCode(val)}
-            onCssChange={(val) => setCssCode(val)}
-            onJsChange={(val) => setJsCode(val)}
-            generateWeb={generateWeb}
-            
-          />
+        <DynamicDiv
+          layout={layout}
+          direction={direction}
+          btn={btn}
+          htmlCode={htmlCode}
+          setHtmlCode={setHtmlCode}
+          cssCode={cssCode}
+          setCssCode={setCssCode}
+          jsCode={jsCode}
+          setJsCode={setJsCode}
+          onHtmlChange={(val) => setHtmlCode(val)}
+          onCssChange={(val) => setCssCode(val)}
+          onJsChange={(val) => setJsCode(val)}
+          generateWeb={generateWeb}
+          
+        />
       </div>
     </div>
   );
 }
-

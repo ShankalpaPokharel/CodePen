@@ -76,31 +76,34 @@ exports.googleAuthCallback = (req, res, next) => {
                 return res.redirect("/");
             }
 
-            const token = jwt.sign({ user }, process.env.JWT_SECRET, {
-                expiresIn: process.env.EXPIRE_IN,
-            });
+            // const token = jwt.sign({ user }, process.env.JWT_SECRET, {
+            //     expiresIn: process.env.EXPIRE_IN,
+            // });
 
-            console.log("user google auth callback",user)
+            // console.log("user google auth callback",user)
 
             // return
 
             // const userId = user.user._id
             // const user_info = await User.findOne({ userId });
 
-            // const payload = {
-            //     id: user_info._id,
-            //     name: user_info.name,
-            //     username: user_info.username,
-            //     email: user_info.email,
-            //     photoUrl:user_info.photoUrl
-            // };
+            const payload = {
+                id: user._id,
+                name: user.name,
+                username:user.username,
+                email: user.email,
+                photoUrl:user.photoUrl,
+                followers:user.followers,
+                following:user.following
+
+            };
             
    
-            // const token = jwt.sign(
-            //     payload,
-            //     process.env.JWT_SECRET,
-            //     { expiresIn: process.env.EXPIRE_IN }
-            // );
+            const token = jwt.sign(
+                payload,
+                process.env.JWT_SECRET,
+                { expiresIn: process.env.EXPIRE_IN }
+            );
 
             res.cookie("jwt", token);
             res.redirect("http://localhost:5173/protected");

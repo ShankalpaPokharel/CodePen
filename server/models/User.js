@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema(
         username: { type: String, required: true, unique: true },
         email: { type: String, required: true, unique: true },
         password: { type: String, default: null },
-        photoUrl:{ type: String, default: null },
+        photoUrl:{ type: String, default: "https://assets.codepen.io/t-1/user-default-avatar.jpg?format=auto&version=0&width=80&height=80&quot;" },
         followers: [
             {
                 type: mongoose.Schema.Types.ObjectId,

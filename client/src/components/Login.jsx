@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { toast } from "react-toastify";
 
 import { setReduxUser } from "../redux/slice/userSlice";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub, FaFacebook } from "react-icons/fa";
@@ -21,6 +22,14 @@ export default function Login() {
   const [formErrors, setFormErrors] = useState({name:null,password:null})
 
   const navigate = useNavigate();
+  const user = useSelector(state=>state.user.value)
+  useEffect(() => {
+    if (user){
+      navigate("/")
+    }
+  }, [user])
+  
+
   const dispatch = useDispatch();
 
   // console.log("forgetClicked",forgetClicked)

@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 
 import { createRoot } from "react-dom/client";
 
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { useDispatch,useSelector } from "react-redux";
 import { setReduxUser } from "./redux/slice/userSlice";
@@ -39,12 +40,14 @@ const router = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "*", element: <PageNotFound /> },
       { path: "/protected", element: <Protected/> },
+      
     ],
   },
   {
     path: "/pen",
     element: <CodeEditorPage />,
   },
+  { path:"/:username/pen/:projectId?", element: <CodeEditorPage/> },
 ]);
 
 function App() {
@@ -60,7 +63,7 @@ function App() {
       axios.get(`${apiUrl}/api/user/getUser`,{withCredentials: true})
    .then(response=>{
     console.log("appjsx resonse",response.data)
-    dispatch(setReduxUser(response.data.data))
+    dispatch(setReduxUser(response.data))
     setIsLoading(false)
    })
    .catch(error=>{
@@ -84,7 +87,7 @@ function App() {
     <div className="font-lato ">
       {isLoading ? <div>Loading......</div> :  <RouterProvider router={router} />}
        
-     
+      <ToastContainer />
     </div>
   );
 }

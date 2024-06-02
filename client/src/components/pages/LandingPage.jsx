@@ -9,8 +9,8 @@ import Login from "../Login";
 
 import { Outlet } from "react-router-dom";
 
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+// import { ToastContainer } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 
 function LandingPage() {
     // const [count, setCount] = useState(0);
@@ -52,7 +52,7 @@ function LandingPage() {
                     {/* <Signup/> */}
                     {/* <Login/> */}
                     <Outlet/>
-                    <ToastContainer />
+                    {/* <ToastContainer /> */}
 
                     
                 </div>
