@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect,useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -16,19 +16,54 @@ import { RxCross2 } from "react-icons/rx";
 // import { Link } from "react-router-dom";
 
 export default function HeaderBar() {
-  const [searchText, setSearchText] = useState("");
-  const [navOpen, setNavOpen] = useState(false);
-  const [openProfileMenu, setOpenProfileMenu] = useState(false)
-  const user = useSelector((state) => state.user.value);
-  const dispatch = useDispatch();
-  const navigate= useNavigate()
-  const location = useLocation();
+   // State variables
+   const [searchText, setSearchText] = useState("");
+   const [navOpen, setNavOpen] = useState(false);
+   const [openProfileMenu, setOpenProfileMenu] = useState(false);
+   const user = useSelector((state) => state.user.value);
+ 
+   // Hooks
+   const dispatch = useDispatch();
+   const navigate = useNavigate();
+   const location = useLocation();
+   const popupRef = useRef(null);
+   const popupRefB = useRef(null);
+   const navpopupRef = useRef(null);
+   const navpopupRefB = useRef(null);
+ 
+   // Event handlers
+   const handleLogout = () => {
+     dispatch(logout());
+     navigate("");
+   };
+ 
+   const handleClickOutsideNav = (event) => {
+     if (navpopupRef.current && !navpopupRef.current.contains(event.target) && !navpopupRefB.current.contains(event.target)) {
+       setNavOpen(false);
+     }
+   };
+ 
+   const handleClickOutside = (event) => {
+     if (popupRef.current && !popupRef.current.contains(event.target) && !popupRefB.current.contains(event.target)) {
+       setOpenProfileMenu(false);
+     }
+   };
+ 
+   // Effect hooks
+   useEffect(() => {
+     document.addEventListener('mousedown', handleClickOutsideNav);
+     return () => {
+       document.removeEventListener('mousedown', handleClickOutsideNav);
+     };
+   }, []);
+ 
+   useEffect(() => {
+     document.addEventListener('mousedown', handleClickOutside);
+     return () => {
+       document.removeEventListener('mousedown', handleClickOutside);
+     };
+   }, []);
 
-  const handleLogout = ()=>{
-    dispatch(logout())
-    navigate("")
-  }
-  
   // console.log(location.pathname)
 
   return (
@@ -47,9 +82,9 @@ export default function HeaderBar() {
             <Link to={""}>
               <FiCodepen className="inline-block text-2xl " />
             </Link>
-            <div
+            <div ref={navpopupRefB}
               className="flex h-full -rotate-90 items-center  rounded-md bg-[#5A5F73] px-2 py-1"
-              onClick={(e) => setNavOpen(!navOpen)}
+              onClick={e=>setNavOpen(!navOpen)}
             >
               <RiMenuFold4Line className="inline-block" />
             </div>
@@ -87,7 +122,7 @@ export default function HeaderBar() {
               </svg>
             </div>
                     </button>
-            <div onClick={e=>setOpenProfileMenu(!openProfileMenu)} className=" cursor-pointer h-[42px]">
+            <div ref={popupRefB} onClick={e=>setOpenProfileMenu(!openProfileMenu)} className=" cursor-pointer h-[42px]">
               <img className="h-full rounded-md" src={user.photoUrl} alt="" />
             </div>
           </div>
@@ -115,13 +150,13 @@ export default function HeaderBar() {
       </div>
 
       {navOpen ? (
-        <div className="absolute left-0 top-[70px] z-10 w-full max-w-[234px] shadow-2xl md:hidden">
+        <div ref={navpopupRef} className="absolute left-0 top-[70px] z-10 w-full max-w-[234px] shadow-2xl md:hidden">
           <Header />
         </div>
       ) : null}
 
 {user && openProfileMenu ?
- <div className="divide-y divide-gray-500 absolute top-[70px] right-2 mr-2 rounded text-white bg-[#1e1f26] z-10 shadow-2xl max-w-[156px] w-full text-xs font-bold">
+ <div ref={popupRef} className="divide-y divide-gray-500 absolute top-[70px] right-2 mr-2 rounded text-white bg-[#1e1f26] z-10 shadow-2xl max-w-[156px] w-full text-xs font-bold">
   <div className="p-2">
     <p className="mb-2">Your Work</p>
     <Link to={`${user.username}`}>Profile</Link>
