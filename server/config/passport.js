@@ -2,6 +2,7 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
+const GitHubStrategy=require('passport-github').Strategy
 
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
@@ -31,6 +32,40 @@ passport.use(new GoogleStrategy({
     return done(err, false);
   }
 }));
+
+
+passport.use(new GitHubStrategy({
+  clientID: process.env.GITHUB_CLIENT_ID,
+  clientSecret: process.env.GITHUB_CLIENT_SECRET,
+  callbackURL: "/auth/github/callback"
+},
+async function (accessToken, refreshToken, profile, done) {
+  try {
+    let user = await User.findOne({ githubId: profile.id });
+    if (!user) {
+        function getRandomNumber() {
+            return Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000;
+          }
+      user = new User({
+        githubId: profile.id,
+        name: profile.displayName,
+        // email: profile.emails[0].value,
+        photoUrl:profile.photos[0].value,
+        username:profile.displayName.replace(/\s+/g, '_')+getRandomNumber()
+      });
+      await user.save();
+
+      user.password=null
+    }
+   
+    return done(null, user);
+  } catch (err) {
+    return done(err, false);
+  }
+
+}
+));
+
 
 passport.serializeUser((user, done) => {
   done(null, user);

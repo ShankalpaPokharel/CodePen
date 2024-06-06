@@ -17,7 +17,8 @@ router.get('/google/callback', (req, res, next) => {
 
 module.exports = router;
 
-
+router.get('/github',authController.githubAuth)
+router.get('/github/callback',authController.githubAuthCallback)
 
 
 
