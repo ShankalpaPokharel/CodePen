@@ -19,6 +19,8 @@ module.exports = router;
 
 router.get('/github',authController.githubAuth)
 router.get('/github/callback',authController.githubAuthCallback)
+router.get('/facebook',authController.facebookAuth)
+router.get('/facebook/callback',authController.facebookAuthCallback)
 
 
 

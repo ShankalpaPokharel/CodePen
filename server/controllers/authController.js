@@ -66,6 +66,7 @@ exports.googleAuth = passport.authenticate("google", {
 });
 
 exports.githubAuth = passport.authenticate('github', { scope: [ 'user:email' ] });
+exports.facebookAuth = passport.authenticate('facebook',{ scope: ['email'] });
 
 
 exports.googleAuthCallback = (req, res, next) => {
@@ -117,6 +118,53 @@ exports.githubAuthCallback = (req, res, next) => {
         "github",
         { session: false, failureRedirect: "http://localhost:5173" },
         async(err, user) => {
+            // res.send({userr:user,respo:"hi"})
+            // return
+            if (err || !user) {
+                console.log(err)
+                return res.redirect("http://localhost:5173");
+            }
+
+            // const token = jwt.sign({ user }, process.env.JWT_SECRET, {
+            //     expiresIn: process.env.EXPIRE_IN,
+            // });
+
+            // console.log("user google auth callback",user)
+
+            // return
+
+            // const userId = user.user._id
+            // const user_info = await User.findOne({ userId });
+
+            const payload = {
+                id: user._id,
+                name: user.name,
+                username:user.username,
+                // email: user?.email,
+                photoUrl:user.photoUrl,
+                followers:user.followers,
+                following:user.following
+
+            };
+            
+   
+            const token = jwt.sign(
+                payload,
+                process.env.JWT_SECRET,
+                { expiresIn: process.env.EXPIRE_IN }
+            );
+
+            res.cookie("jwt", token);
+            res.redirect("http://localhost:5173/your-work");
+        }
+    )(req, res, next);
+};
+exports.facebookAuthCallback = (req, res, next) => {
+    passport.authenticate(
+        "facebook",
+        { session: false, failureRedirect: "http://localhost:5173" },
+        async(err, user) => {
+            // console.error("Authentication error or no user:", err);
             // res.send({userr:user,respo:"hi"})
             // return
             if (err || !user) {

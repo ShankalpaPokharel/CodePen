@@ -3,6 +3,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const GitHubStrategy=require('passport-github').Strategy
+const FacebookStrategy=require('passport-facebook').Strategy
 
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
@@ -60,6 +61,42 @@ async function (accessToken, refreshToken, profile, done) {
    
     return done(null, user);
   } catch (err) {
+    return done(err, false);
+  }
+
+}
+));
+passport.use(new FacebookStrategy({
+  clientID: process.env.FACEBOOK_CLIENT_ID,
+  clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+  callbackURL: "/auth/facebook/callback",
+  profileFields: ['id', 'displayName', 'photos', 'email']
+},
+async function (accessToken, refreshToken, profile, done) {
+  try {
+    let user = await User.findOne({ facebookId: profile.id });
+    if (!user) {
+      user = await User.findOne({ email: profile.emails[0].value });
+      if (user) {
+        // Update existing user details
+        user.facebookId = profile.id;
+      } else {
+        // Create a new user if no user with this email exists
+        user = new User({
+          facebookId: profile.id,
+          name: profile.displayName,
+          email: profile.emails && profile.emails.length ? profile.emails[0].value : null,
+          photoUrl: profile.photos && profile.photos.length ? profile.photos[0].value : null,
+          username: profile.displayName.replace(/\s+/g, '_') + getRandomNumber()
+        });
+      }
+      await user.save();
+      user.password = null; // Clear password field if it exists
+    }
+   
+    return done(null, user);
+  } catch (err) {
+    console.error("Error during user creation:", err);
     return done(err, false);
   }
 
