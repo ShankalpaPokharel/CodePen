@@ -16,11 +16,18 @@ import { BiSolidMessage } from "react-icons/bi";
 import { IoEye } from "react-icons/io5";
 
 export default function YourWork() {
+  const [projects, setProjects] = useState(null)
+  const [searchText, setSearchText] = useState("")
+  // const [filterprojects,setFilterprojects] = useState("")
   const user = useSelector((state) => state.user.value);
+  
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [projects, setProjects] = useState(null)
-  // const user =5;
+
+  const filterprojects = projects?.filter(el=>el.name.toLowerCase().includes(searchText.trim().toLowerCase()))
+ 
+  
 
   const fatchData = () =>{
     axios.get(`${apiUrl}/api/user/getPinProjects`,{withCredentials:true})
@@ -32,6 +39,9 @@ export default function YourWork() {
       console.log("fatch data your work error",error)
     })
   }
+
+
+
 
   useEffect(() => {
     async function fetchData() {
@@ -96,7 +106,7 @@ export default function YourWork() {
         <div className="flex gap-2 items-center">
           <p className="text-primary-dark">SEARCH</p>
           <div className="overflow-hidden flex items-center rounded  bg-[#2c303a]">
-            <input className="focus:outline-none my-2 bg-transparent text-white px-2 placeholder-primary-dark" placeholder="Search for..." type="text" />
+            <input onChange={e=>setSearchText(e.target.value)} className="focus:outline-none my-2 bg-transparent text-white px-2 placeholder-primary-dark" placeholder="Search for..." type="text" />
             <button className="text-white px-3 py-2 h-full bg-[#717790]">Search</button>
           </div>
         </div>
@@ -159,7 +169,7 @@ export default function YourWork() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-8 mb-12">
         
-        {projects?.map(el => (
+        {filterprojects?.map(el => (
            <div className="bg-[#1E1F26] rounded-md cursor-pointer  " key={el._id} onClick={ e => navigate(`/${el.createdBy.username}/pen/${el._id}`)}>
            <div className="h-[70%] p-3">
                {/* <img className="h-full object-cover w-full rounded-md" src="https://images.unsplash.com/photo-1505533321630-975218a5f66f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZnJlZSUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D" alt="" /> */}

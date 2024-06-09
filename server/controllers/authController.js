@@ -76,7 +76,7 @@ exports.googleAuthCallback = (req, res, next) => {
         async(err, user) => {
             if (err || !user) {
                 console.log(err)
-                return res.redirect("/");
+                return res.redirect("http://localhost:5173");
             }
 
             // const token = jwt.sign({ user }, process.env.JWT_SECRET, {
