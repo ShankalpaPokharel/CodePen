@@ -36,31 +36,55 @@ exports.login = async (req, res) => {
             return res.status(400).json({ msg: "Invalid credentials" });
         user.password = null
 
+        // const payload = {
+        //     id: user._id,
+        //     name: user.name,
+        //     username: user.username,
+        //     email: user.email,
+        //     photoUrl:user.photoUrl
+        // };
+        
+
+        // const token = jwt.sign(
+        //     payload,
+        //     process.env.JWT_SECRET,
+        //     { expiresIn: process.env.EXPIRE_IN,}
+        // );
+        // console.log("user",user)
+
+      
+        // console.log("user backend",user)
+        // const data = {msg:"Successfully log in",user:user}
+        // return res.status(200).cookie("jwt",token,{
+        //     expires: new Date(Date.now() + 3600 * 1000*4),
+        //     secure: true, // Ensures the cookie is only sent over HTTPS
+        //     sameSite: 'strict',
+        //     Domain:"https://code-pen-9pls.vercel.app" // Mitigates CSRF attacks
+        // }).json(data)
         const payload = {
             id: user._id,
             name: user.name,
             username: user.username,
             email: user.email,
-            photoUrl:user.photoUrl
+            photoUrl: user.photoUrl
         };
         
-
         const token = jwt.sign(
             payload,
             process.env.JWT_SECRET,
-            { expiresIn: process.env.EXPIRE_IN,}
+            { expiresIn: process.env.EXPIRE_IN }
         );
-        console.log("user",user)
-
-      
-        console.log("user backend",user)
-        const data = {msg:"Successfully log in",user:user}
-        return res.status(200).cookie("jwt",token,{
-            expires: new Date(Date.now() + 3600 * 1000),
+        
+        console.log("user", user);
+        console.log("user backend", user);
+        
+        const data = { msg: "Successfully log in", user: user };
+        return res.status(200).cookie("jwt", token, {
+            expires: new Date(Date.now() + 3600 * 1000 * 4),
             secure: true, // Ensures the cookie is only sent over HTTPS
-            sameSite: 'strict',
-            Domain:"https://code-pen-9pls.vercel.app" // Mitigates CSRF attacks
-        }).json(data)
+            sameSite: 'lax', // Less restrictive than 'strict'
+            domain: "code-pen-9pls.vercel.app", // Set to actual domain without protocol
+        }).json(data);
     } catch (err) {
         console.log("login catach")
         res.status(500).json({ error: err.message });
