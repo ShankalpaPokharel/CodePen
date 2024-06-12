@@ -57,7 +57,8 @@ exports.login = async (req, res) => {
         const data = {msg:"Successfully log in",user:user}
         return res.status(200).cookie("jwt",token,{
             secure: true, // Ensures the cookie is only sent over HTTPS
-            sameSite: 'strict', // Mitigates CSRF attacks
+            sameSite: 'strict',
+            Domain:"https://code-pen-9pls.vercel.app" // Mitigates CSRF attacks
         }).json(data)
     } catch (err) {
         console.log("login catach")
