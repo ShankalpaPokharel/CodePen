@@ -38,7 +38,13 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+
 // Routes
+
+
+app.get("/", (req, res) => res.send("Express on Vercel"));
+
 const authRoutes = require('./routes/auth.routes');
 app.use('/auth', authRoutes);
 
