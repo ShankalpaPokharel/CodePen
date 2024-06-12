@@ -72,7 +72,8 @@ exports.login = async (req, res) => {
         const token = jwt.sign(
             payload,
             process.env.JWT_SECRET,
-            { expiresIn: process.env.EXPIRE_IN }
+            { expiresIn: process.env.EXPIRE_IN,path: "/", },
+            
         );
         
         console.log("user", user);
