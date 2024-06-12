@@ -72,7 +72,7 @@ exports.login = async (req, res) => {
         const token = jwt.sign(
             payload,
             process.env.JWT_SECRET,
-            { expiresIn: process.env.EXPIRE_IN,path: "/", },
+            { expiresIn: process.env.EXPIRE_IN },
             
         );
         
@@ -82,7 +82,10 @@ exports.login = async (req, res) => {
         const data = { msg: "Successfully log in", user: user };
         return res.status(200).cookie("jwt", token, {
             path: "/",
-            maxAge: 30 * 24 * 60 * 60 * 1000, // 30days
+            maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+            domain: '.vercel.app',
+            secure: true, // Ensure this is only set if you're using HTTPS
+            sameSite: 'None',
         }).json(data);
 
         // const payload = {
