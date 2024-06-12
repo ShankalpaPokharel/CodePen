@@ -21,7 +21,7 @@ connectDB();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const corsOptions = {
-    origin: 'https://code-pen-9pls.vercel.app/', // Your frontend URL
+    origin: 'https://code-pen-9pls.vercel.app', // Your frontend URL
     credentials: true // Allow cookies to be sent
 };
 app.use(cors(corsOptions));
