@@ -56,6 +56,7 @@ exports.login = async (req, res) => {
         console.log("user backend",user)
         const data = {msg:"Successfully log in",user:user}
         return res.status(200).cookie("jwt",token,{
+            expires: new Date(Date.now() + 3600 * 1000),
             secure: true, // Ensures the cookie is only sent over HTTPS
             sameSite: 'strict',
             Domain:"https://code-pen-9pls.vercel.app" // Mitigates CSRF attacks
