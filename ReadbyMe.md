@@ -141,11 +141,28 @@ when you forget to use curly braces or quotes properly around class names.
 <span className={`mr-2 ${selectedList === item.id ? '-rotate-90' : ''} text-base`}><TiArrowSortedDown /></span>
 
 
-```jsx
+```
 
 
 one problem took my morning 
 in app.jsx i save the user in redux , but immidetily send the router provide and try to access the set user value from protected route(there was login in there is no user redirect in to the landing page, tried to debug and when do console show the user when colsole but when add in useeffet didn't show cause, backend response take time but i immediately render the component )
 
  ```{isLoading ? <div>Loading......</div> :  <RouterProvider router={router} />}```
+
+
+## Using Vite to make SPAs
+If your Vite app is configured to deploy as a Single Page Application (SPA), deep linking won't work out of the box.
+
+To enable deep linking in SPA Vite apps, create a vercel.json file at the root of your project, and add the following code:
+
+```json
+{
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
+```
 
