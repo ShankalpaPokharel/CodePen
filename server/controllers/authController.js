@@ -48,14 +48,17 @@ exports.login = async (req, res) => {
         const token = jwt.sign(
             payload,
             process.env.JWT_SECRET,
-            { expiresIn: process.env.EXPIRE_IN }
+            { expiresIn: process.env.EXPIRE_IN,}
         );
         console.log("user",user)
 
       
         console.log("user backend",user)
         const data = {msg:"Successfully log in",user:user}
-        return res.status(200).cookie("jwt",token).json(data)
+        return res.status(200).cookie("jwt",token,{
+            secure: true, // Ensures the cookie is only sent over HTTPS
+            sameSite: 'strict', // Mitigates CSRF attacks
+        }).json(data)
     } catch (err) {
         console.log("login catach")
         res.status(500).json({ error: err.message });
