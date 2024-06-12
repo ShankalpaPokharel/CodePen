@@ -83,7 +83,7 @@ exports.login = async (req, res) => {
             expires: new Date(Date.now() + 3600 * 1000 * 4),
             secure: true, // Ensures the cookie is only sent over HTTPS
             sameSite: 'lax', // Less restrictive than 'strict'
-            domain: "code-pen-9pls.vercel.app", // Set to actual domain without protocol
+            domain: "code-pen-z2b4.vercel.app", // Set to actual domain without protocol
         }).json(data);
     } catch (err) {
         console.log("login catach")
@@ -130,7 +130,7 @@ exports.googleAuthCallback = (req, res, next) => {
             );
 
             res.cookie("jwt", token);
-            res.redirect("https://code-pen-9pls.vercel.app/your-work");
+            res.redirect("https://code-pen-z2b4.vercel.app/your-work");
         }
     )(req, res, next);
 };
