@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // CORS configuration
 const corsOptions = {
-  origin: 'https://code-pen-9pls.vercel.app', // Ensure no trailing slash
+  origin: ['https://code-pen-9pls.vercel.app','http://localhost:5173'], // Ensure no trailing slash
   credentials: true // Allow cookies to be sent
 };
 app.use(cors(corsOptions));
