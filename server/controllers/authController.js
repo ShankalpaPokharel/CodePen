@@ -2,6 +2,7 @@ const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
+const frontendURL = require("../constant/variable")
 
 exports.signup = async (req, res) => {
     console.log("signup hit")
@@ -72,11 +73,11 @@ exports.facebookAuth = passport.authenticate('facebook',{ scope: ['email'] });
 exports.googleAuthCallback = (req, res, next) => {
     passport.authenticate(
         "google",
-        { session: false, failureRedirect: "http://localhost:5173" },
+        { session: false, failureRedirect: frontendURL },
         async(err, user) => {
             if (err || !user) {
                 console.log(err)
-                return res.redirect("http://localhost:5173");
+                return res.redirect(frontendURL);
             }
 
             // const token = jwt.sign({ user }, process.env.JWT_SECRET, {
@@ -109,20 +110,20 @@ exports.googleAuthCallback = (req, res, next) => {
             );
 
             res.cookie("jwt", token);
-            res.redirect("http://localhost:5173/your-work");
+            res.redirect("https://code-pen-9pls.vercel.app//your-work");
         }
     )(req, res, next);
 };
 exports.githubAuthCallback = (req, res, next) => {
     passport.authenticate(
         "github",
-        { session: false, failureRedirect: "http://localhost:5173" },
+        { session: false, failureRedirect: frontendURL },
         async(err, user) => {
             // res.send({userr:user,respo:"hi"})
             // return
             if (err || !user) {
                 console.log(err)
-                return res.redirect("http://localhost:5173");
+                return res.redirect(frontendURL);
             }
 
             // const token = jwt.sign({ user }, process.env.JWT_SECRET, {
@@ -155,21 +156,21 @@ exports.githubAuthCallback = (req, res, next) => {
             );
 
             res.cookie("jwt", token);
-            res.redirect("http://localhost:5173/your-work");
+            res.redirect(`${frontendURL}/your-work`);
         }
     )(req, res, next);
 };
 exports.facebookAuthCallback = (req, res, next) => {
     passport.authenticate(
         "facebook",
-        { session: false, failureRedirect: "http://localhost:5173" },
+        { session: false, failureRedirect: frontendURL },
         async(err, user) => {
             // console.error("Authentication error or no user:", err);
             // res.send({userr:user,respo:"hi"})
             // return
             if (err || !user) {
                 console.log(err)
-                return res.redirect("http://localhost:5173");
+                return res.redirect(frontendURL);
             }
 
             // const token = jwt.sign({ user }, process.env.JWT_SECRET, {
@@ -202,7 +203,7 @@ exports.facebookAuthCallback = (req, res, next) => {
             );
 
             res.cookie("jwt", token);
-            res.redirect("http://localhost:5173/your-work");
+            res.redirect(`${frontendURL}/your-work`);
         }
     )(req, res, next);
 };

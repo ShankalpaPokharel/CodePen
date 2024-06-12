@@ -87,3 +87,7 @@ exports.getPinProjects = async(req,res)=>{
         res.status(500).json({ error: 'Internal server error' });
     }
 }
+
+exports.test = (req,res)=>{
+    res.send("user test route")
+}
