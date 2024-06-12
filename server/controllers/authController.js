@@ -80,16 +80,6 @@ exports.googleAuthCallback = (req, res, next) => {
                 return res.redirect(frontendURL);
             }
 
-            // const token = jwt.sign({ user }, process.env.JWT_SECRET, {
-            //     expiresIn: process.env.EXPIRE_IN,
-            // });
-
-            // console.log("user google auth callback",user)
-
-            // return
-
-            // const userId = user.user._id
-            // const user_info = await User.findOne({ userId });
 
             const payload = {
                 id: user._id,
