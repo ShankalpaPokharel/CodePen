@@ -110,7 +110,7 @@ exports.googleAuthCallback = (req, res, next) => {
             );
 
             res.cookie("jwt", token);
-            res.redirect("https://code-pen-9pls.vercel.app//your-work");
+            res.redirect("https://code-pen-9pls.vercel.app/your-work");
         }
     )(req, res, next);
 };
