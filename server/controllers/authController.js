@@ -80,13 +80,13 @@ exports.login = async (req, res) => {
         console.log("user backend", user);
         
         const data = { msg: "Successfully log in", user: user };
-        return res.status(200).cookie("jwt", token, {
-            path: "/",
-            maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
-            domain: '.vercel.app',
-            secure: true, // Ensure this is only set if you're using HTTPS
-            sameSite: 'None',
-        }).json(data);
+        // return res.status(200).cookie("jwt", token, {
+        //     path: "/",
+        //     maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+        //     domain: '.vercel.app',
+        //     secure: true, // Ensure this is only set if you're using HTTPS
+        //     sameSite: 'None',
+        // }).json(data);
 
         // const payload = {
         //     id: user._id,
@@ -107,7 +107,7 @@ exports.login = async (req, res) => {
       
         // console.log("user backend",user)
         // const data = {msg:"Successfully log in",user:user}
-        // return res.status(200).cookie("jwt",token).json(data)
+        return res.status(200).cookie("jwt",token).json(data)
     } catch (err) {
         console.log("login catach")
         res.status(500).json({ error: err.message });
